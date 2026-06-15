@@ -16,8 +16,10 @@ const {
 } = Astro.props;
 
 const fullTitle = title ? `${title} – YCaT` : `${site.name} – ${site.tagline}`;
-const canonical = new URL(Astro.url.pathname, "https://www.ycat.de").href;
-const ogImageUrl = new URL(ogImage, "https://www.ycat.de").href;
+const origin = (Astro.site ?? new URL("https://www.ycat.de")).origin;
+const base = import.meta.env.BASE_URL; // "/" locally, "/YCAT" on GitHub Pages
+const canonical = origin + Astro.url.pathname;
+const ogImageUrl = origin + `/${base}/${ogImage}`.replace(/\/+/g, "/");
 ---
 <!doctype html>
 <html lang="de">

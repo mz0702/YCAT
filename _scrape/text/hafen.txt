@@ -1,6 +1,0 @@
-URL: https://www.ycat.de/hafen/
-TITLE: Services – YCaT
-META: 
-
-<p> Bitte wählen Sie den gewünschten Service:
-<p> Kran-Service

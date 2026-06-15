@@ -41,11 +41,18 @@ jobs:
           node-version: 20
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build Astro
         run: ${{ steps.detect-package-manager.outputs.runner }} astro build
+      - name: Fix base paths for project page
+        run: node scripts/fix-base.mjs
+        env:
+          SITE_BASE: /YCAT
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -1,5 +1,0 @@
-URL: https://www.ycat.de/wind-und-wetter/wetter/
-TITLE: Wetter – YCaT
-META: 
-
-<a> [LINK] Link zu Meteoblue.com -> https://www.meteoblue.com/de/wetter/vorhersage/woche/tegernsee_deutschland_2823679
