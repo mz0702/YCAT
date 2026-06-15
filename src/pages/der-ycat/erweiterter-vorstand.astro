@@ -1,0 +1,42 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import Reveal from "../../components/Reveal.astro";
+import MemberCard from "../../components/MemberCard.astro";
+import Icon from "../../components/Icon.astro";
+import { erweiterterVorstand } from "../../data/club";
+import dock from "../../assets/photos/dock.jpg";
+---
+<Layout title="Erweiterter Vorstand" description="Der erweiterte Vorstand des YCaT – Hafenmeister, Zeugwart, Gebäudewart, Obmann des Wettsegelsports, Jugendwart, Sportwart und Pressewart.">
+  <PageHero
+    image={dock}
+    imageAlt="Steg und Boote am YCaT-Hafen"
+    kicker="Der YCaT"
+    title="Erweiterter Vorstand"
+    lede="Hafen, Sport, Jugend, Gebäude und Presse – die Ressorts, die den Clubbetrieb am Laufen halten."
+    crumbs={[{ label: "Der YCaT", href: "/der-ycat/" }, { label: "Erweiterter Vorstand" }]}
+  />
+  <section class="section">
+    <div class="container">
+      <Reveal class="mgrid">
+        {erweiterterVorstand.map((m) => <MemberCard member={m} />)}
+      </Reveal>
+      <Reveal class="vorstand-note" delay={120}>
+        <p>
+          <Icon name="users" size={18} />
+          Du möchtest dich engagieren? Sprich uns an – gerade beim Zeugwart freuen wir uns über
+          helfende Hände.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .mgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .vorstand-note { margin-top: 2.4rem; padding: 1.6rem 1.8rem; background: var(--surface); border-radius: var(--radius-lg); }
+  .vorstand-note p { color: var(--ink-soft); display: flex; gap: 0.7rem; align-items: center; }
+  .vorstand-note svg { color: var(--lake-600); flex-shrink: 0; }
+  @media (max-width: 980px) { .mgrid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 680px) { .mgrid { grid-template-columns: 1fr; } }
+</style>

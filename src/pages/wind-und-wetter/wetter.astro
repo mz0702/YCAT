@@ -1,0 +1,73 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import Reveal from "../../components/Reveal.astro";
+import Icon from "../../components/Icon.astro";
+import standard01 from "../../assets/photos/standard-01.jpg";
+
+const meteoblue =
+  "https://www.meteoblue.com/de/wetter/widget/daily/tegernsee_deutschland_2823679?geoloc=fixed&days=7&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&precipunit=MILLIMETER&coloured=coloured&pictoicon=1&maxtemperature=1&mintemperature=1&windspeed=1&winddirection=1&uv=0&humidity=0&precipitation=1&precipitationprobability=1&spot=0&pressure=0&layout=light";
+const sources = [
+  { label: "meteoblue – 7-Tage-Vorhersage Tegernsee", href: "https://www.meteoblue.com/de/wetter/vorhersage/woche/tegernsee_deutschland_2823679", icon: "compass" },
+  { label: "GKD Bayern – Wassertemperatur & Pegel", href: "https://www.gkd.bayern.de/de/seen/wassertemperatur/inn/tegernsee-18201008", icon: "waves" },
+  { label: "Unwetterzentrale Deutschland", href: "https://www.unwetterzentrale.de/", icon: "wind" },
+];
+---
+<Layout title="Wettervorhersage" description="Wettervorhersage für den Tegernsee – 7-Tage-Prognose und weitere Wetterquellen für Segler.">
+  <PageHero
+    image={standard01}
+    imageAlt="Segelboote bei wechselndem Wetter am Tegernsee"
+    kicker="Wind & Wetter"
+    title="Wettervorhersage"
+    lede="Die 7-Tage-Prognose für den Tegernsee – damit ihr eure Schläge und Regatten gut plant."
+    crumbs={[{ label: "Wind & Wetter", href: "/wind-und-wetter/" }, { label: "Vorhersage" }]}
+    focus="center 55%"
+  />
+
+  <section class="section">
+    <div class="container we-grid">
+      <Reveal class="we-embed">
+        <iframe src={meteoblue} title="7-Tage-Wettervorhersage Tegernsee (meteoblue)" loading="lazy" scrolling="no"></iframe>
+        <a href="https://www.meteoblue.com/de/wetter/vorhersage/woche/tegernsee_deutschland_2823679" target="_blank" rel="noopener" class="we-embed__fallback">
+          Vorhersage lädt nicht? Direkt zu meteoblue <Icon name="arrow-up-right" size={14} />
+        </a>
+      </Reveal>
+
+      <Reveal class="we-sources" delay={100}>
+        <p class="kicker">Weitere Quellen</p>
+        <ul>
+          {sources.map((s) => (
+            <li>
+              <a href={s.href} target="_blank" rel="noopener">
+                <span class="we-sources__icon"><Icon name={s.icon} size={18} /></span>
+                <span>{s.label}</span>
+                <Icon name="arrow-up-right" size={15} class="we-sources__go" />
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a href="/wind-und-wetter/webcam/" class="btn btn--ghost we-sources__cam">
+          Zur Live-Webcam <span class="btn__icon"><Icon name="arrow-right" size={15} /></span>
+        </a>
+      </Reveal>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .we-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(1.4rem, 0.5rem + 3vw, 2.6rem); align-items: start; }
+  .we-embed { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .we-embed iframe { width: 100%; height: 580px; border: 0; display: block; }
+  .we-embed__fallback { display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.9rem; font-size: 0.86rem; font-weight: 500; color: var(--lake-700); border-top: 1px solid var(--line); }
+  .we-embed__fallback:hover { background: var(--surface); }
+
+  .we-sources ul { list-style: none; padding: 0; margin: 1.4rem 0 0; display: flex; flex-direction: column; gap: 0.6rem; }
+  .we-sources a { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.1rem; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); font-weight: 600; color: var(--pine-800); transition: transform 0.4s var(--ease-expo), box-shadow 0.4s var(--ease-expo); }
+  .we-sources a:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+  .we-sources__icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 11px; background: var(--lake-200); color: var(--lake-700); flex-shrink: 0; }
+  .we-sources a span:nth-child(2) { flex: 1; font-size: 0.92rem; }
+  .we-sources__go { color: var(--line-strong); }
+  .we-sources__cam { margin-top: 1.4rem; }
+
+  @media (max-width: 880px) { .we-grid { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.astro/
+_scrape/node_modules/
+_scrape/raw/
+.DS_Store
+*.log

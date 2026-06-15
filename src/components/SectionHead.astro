@@ -1,0 +1,19 @@
+---
+import Reveal from "./Reveal.astro";
+interface Props { kicker?: string; title: string; lede?: string; align?: "left" | "center"; class?: string }
+const { kicker, title, lede, align = "left", class: cls = "" } = Astro.props;
+---
+<Reveal class={`sechead sechead--${align} ${cls}`}>
+  {kicker && <p class="kicker">{kicker}</p>}
+  <h2 class="sechead__title">{title}</h2>
+  {lede && <p class="lede sechead__lede">{lede}</p>}
+</Reveal>
+
+<style>
+  .sechead { max-width: 62ch; }
+  .sechead--center { margin-inline: auto; text-align: center; max-width: 56ch; }
+  .sechead--center .kicker { justify-content: center; }
+  .sechead__title { margin-top: 0.9rem; }
+  .sechead__lede { margin-top: 1.1rem; }
+  .sechead--center .sechead__lede { margin-inline: auto; }
+</style>

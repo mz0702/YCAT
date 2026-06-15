@@ -1,0 +1,41 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import Reveal from "../../components/Reveal.astro";
+import MemberCard from "../../components/MemberCard.astro";
+import Icon from "../../components/Icon.astro";
+import { vorstand } from "../../data/club";
+import harbour from "../../assets/photos/harbour.jpg";
+---
+<Layout title="Geschäftsführender Vorstand" description="Der geschäftsführende Vorstand des Yacht-Club am Tegernsee – 1. und 2. Vorsitzender, Schriftführer und Kassenwart.">
+  <PageHero
+    image={harbour}
+    imageAlt="Der Hafen des YCaT am Tegernsee"
+    kicker="Der YCaT"
+    title="Geschäftsführender Vorstand"
+    lede="Die vier Köpfe, die den Verein leiten – bei Fragen jederzeit für euch erreichbar."
+    crumbs={[{ label: "Der YCaT", href: "/der-ycat/" }, { label: "Vorstand" }]}
+  />
+  <section class="section">
+    <div class="container">
+      <Reveal class="mgrid">
+        {vorstand.map((m) => <MemberCard member={m} />)}
+      </Reveal>
+      <Reveal class="vorstand-note" delay={120}>
+        <p>
+          Neben dem geschäftsführenden Vorstand kümmert sich der
+          <a href="/der-ycat/erweiterter-vorstand/" class="link-arrow">erweiterte Vorstand <Icon name="arrow-right" size={15} /></a>
+          um Hafen, Sport, Jugend und Presse.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .mgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .vorstand-note { margin-top: 2.4rem; padding: 1.6rem 1.8rem; background: var(--surface); border-radius: var(--radius-lg); }
+  .vorstand-note p { color: var(--ink-soft); display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+  .vorstand-note .link-arrow { display: inline-flex; }
+  @media (max-width: 720px) { .mgrid { grid-template-columns: 1fr; } }
+</style>

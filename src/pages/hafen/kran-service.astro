@@ -1,0 +1,80 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import Reveal from "../../components/Reveal.astro";
+import Icon from "../../components/Icon.astro";
+import craneHook from "../../assets/photos/crane-hook.jpg";
+
+const rules = [
+  { t: "Termin & Gebühr", d: "Für externe Krangäste (Nicht-Mitglieder) bietet der YCaT e.V. Krantermine nach Vereinbarung gegen Gebühr mit unserem Hafenmeister Volker Schütz an." },
+  { t: "Kranbereit am Waschplatz", d: "Bitte zu Beginn des vereinbarten Termins „kranbereit“ am Waschplatz einfinden – sonst kann der Termin mit nachfolgenden kollidieren und gefährdet sein." },
+  { t: "Weitere Kosten möglich", d: "Unabhängig von Krangebühren können weitere Kosten für die Nutzung der Infrastruktur anfallen. Individuelle Angebote werden bei Bedarf durch den Hafenmeister unterbreitet." },
+  { t: "Bedienung des Krans", d: "Nur unterwiesene Personen und Mitglieder dürfen den Kran selbst bedienen. Der Schlüssel ist zu den Öffnungszeiten im Büro erhältlich – gegen Vorlage einer Kopie des Personal- oder Mitgliederausweises." },
+  { t: "Kranschulung", d: "Eine Kranschulung findet nur nach Vereinbarung statt. Interessenten melden sich bitte rechtzeitig bei Hr. Schütz oder Hr. Berleb an." },
+];
+---
+<Layout title="Kran-Service" description="Kran-Service des YCaT – Krantermine nach Vereinbarung, auch für externe Gäste. Kontakt: Hafenmeister Volker Schütz.">
+  <PageHero
+    image={craneHook}
+    imageAlt="Kranhaken am YCaT-Hafen"
+    kicker="Hafen"
+    title="Kran-Service"
+    lede="Krantermine nach Vereinbarung – für Mitglieder und externe Gäste. Alles Wichtige zu Ablauf, Bedienung und Schulung."
+    crumbs={[{ label: "Hafen", href: "/hafen/" }, { label: "Kran-Service" }]}
+    focus="center 40%"
+  />
+
+  <section class="section">
+    <div class="container article">
+      <div class="article__main">
+        <Reveal class="rules">
+          {rules.map((r, i) => (
+            <div class="rule" style={`--reveal-delay:${i * 60}ms`}>
+              <span class="rule__icon"><Icon name="crane" size={20} /></span>
+              <div>
+                <h3 class="rule__t">{r.t}</h3>
+                <p class="rule__d">{r.d}</p>
+              </div>
+            </div>
+          ))}
+        </Reveal>
+      </div>
+
+      <Reveal class="article__aside" delay={100}>
+        <div class="contact-card">
+          <p class="kicker">Hafenmeister</p>
+          <h3>Volker Schütz</h3>
+          <ul>
+            <li><Icon name="phone" size={17} /><a href="tel:+4915114291495">+49 (0)151 1429 1495</a></li>
+            <li><Icon name="mail" size={17} /><a href="mailto:schuetz@ycat.de">schuetz@ycat.de</a></li>
+          </ul>
+          <a href="mailto:schuetz@ycat.de?subject=Krantermin" class="btn btn--accent contact-card__btn">
+            Krantermin anfragen <span class="btn__icon"><Icon name="arrow-right" size={16} /></span>
+          </a>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .article { display: grid; grid-template-columns: 1.6fr 1fr; gap: clamp(1.6rem, 0.5rem + 4vw, 3.5rem); align-items: start; }
+  .rules { display: flex; flex-direction: column; gap: 0.4rem; }
+  .rule { display: flex; gap: 1.1rem; padding: 1.3rem 0; border-bottom: 1px solid var(--line); }
+  .rule:first-child { padding-top: 0; }
+  .rule__icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 13px; background: var(--lake-200); color: var(--lake-700); flex-shrink: 0; }
+  .rule__t { font-size: var(--step-1); }
+  .rule__d { color: var(--ink-soft); margin-top: 0.35rem; font-size: 0.96rem; }
+
+  .contact-card { padding: clamp(1.6rem, 1rem + 2vw, 2.2rem); background: var(--pine-900); color: var(--on-dark); border-radius: var(--radius-lg); position: sticky; top: 6.5rem; box-shadow: var(--shadow-md); }
+  .contact-card .kicker { color: var(--brass-400); }
+  .contact-card .kicker::before { background: var(--brass-400); }
+  .contact-card h3 { color: var(--white); margin-top: 0.7rem; }
+  .contact-card ul { list-style: none; padding: 0; margin: 1.4rem 0; display: flex; flex-direction: column; gap: 0.8rem; }
+  .contact-card li { display: flex; align-items: center; gap: 0.7rem; color: oklch(0.94 0.01 165 / 0.92); }
+  .contact-card svg { color: var(--brass-400); flex-shrink: 0; }
+  .contact-card a:hover { color: var(--brass-400); }
+  .contact-card__btn { margin-top: 0.3rem; }
+
+  @media (max-width: 880px) { .article { grid-template-columns: 1fr; } .contact-card { position: static; } }
+</style>

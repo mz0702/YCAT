@@ -1,0 +1,133 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import SectionHead from "../../components/SectionHead.astro";
+import Reveal from "../../components/Reveal.astro";
+import Icon from "../../components/Icon.astro";
+import JoinCta from "../../components/JoinCta.astro";
+import { chairmen } from "../../data/club";
+import clubhouse from "../../assets/photos/clubhouse.jpg";
+
+const honors = [
+  "Bayerische Meister", "Deutsche Meister", "Österreichische Staatsmeister",
+  "Schweizer Meister", "Europa-Cup-Sieger", "Weltmeister", "Olympiateilnehmer",
+];
+const sub = [
+  { label: "Geschäftsführender Vorstand", href: "/der-ycat/vorstand/", icon: "users", desc: "Die vier Köpfe an der Spitze des Vereins." },
+  { label: "Erweiterter Vorstand", href: "/der-ycat/erweiterter-vorstand/", icon: "users", desc: "Hafen, Sport, Jugend, Presse & mehr." },
+  { label: "Obleute", href: "/der-ycat/obleute/", icon: "flag", desc: "Eure Ansprechpartner je Bootsklasse." },
+  { label: "Bootsklassen", href: "/der-ycat/bootsklassen/", icon: "sail", desc: "Von Optimist bis Drachen – die Klassenpolitik." },
+  { label: "Sponsoren", href: "/der-ycat/sponsoren/", icon: "trophy", desc: "Partner, die unsere Jugend möglich machen." },
+  { label: "Kontakt & Anfahrt", href: "/kontakt/", icon: "pin", desc: "So findet ihr ans Clubgelände." },
+];
+---
+<Layout title="Der YCaT" description="Der Yacht-Club am Tegernsee – gegründet 1931, beheimatet im Herzoglichen Haus. Geschichte, Vorstand, Obleute, Bootsklassen und Sponsoren des Vereins.">
+  <PageHero
+    image={clubhouse}
+    imageAlt="Das Clubhaus des YCaT – das Herzogliche Haus am Tegernsee"
+    kicker="Der Verein"
+    title="Segelsport und mehr – seit 1931"
+    lede="Der Yacht-Club am Tegernsee ist ein sportlich ausgerichteter Verein mit großer Tradition und lebendigem Nachwuchs, beheimatet im Herzoglichen Haus direkt am See."
+    crumbs={[{ label: "Der YCaT" }]}
+    focus="center 55%"
+  />
+
+  <section class="section">
+    <div class="container story">
+      <div class="story__main">
+        <SectionHead kicker="80 Jahre erfolgreicher Regatta-Sport" title="Eine Geschichte, die bis heute Wind hat" />
+        <Reveal as="p" delay={60} class="prose story__p">
+          Der Yacht-Club am Tegernsee wurde 1931 durch die Initiative einiger Mitglieder des
+          Königlich Bayerischen Yachtclubs Starnberg gegründet. Nach dem Zweiten Weltkrieg und der
+          amerikanischen Besatzung erfolgte 1949 eine Neugründung als Yacht- und Ruder-Club am
+          Tegernsee. 1955 trennten sich beide Vereine in den Ruderverein am Tegernsee von 1949 und
+          unseren heutigen Yacht-Club am Tegernsee.
+        </Reveal>
+        <Reveal as="p" delay={120} class="prose story__p">
+          Beheimatet im Herzoglichen Haus, brachte der Club als Folge seiner sportlichen Aktivitäten
+          zahlreiche Titelträger hervor – hinzu kommen Siege bei der italienischen Langstrecken-Regatta
+          auf dem Gardasee, Gorla und Centomiglia. Diese lange Tradition der Erfolge wird derzeit vor
+          allem im Jugendbereich der 29er-Klasse fortgesetzt. Die Einsteiger-Klasse Optimist befindet
+          sich zudem im starken Aufschwung.
+        </Reveal>
+      </div>
+      <Reveal class="story__aside" delay={120}>
+        <div class="honors">
+          <p class="kicker">Hervorgebracht</p>
+          <ul class="honors__list">
+            {honors.map((h) => <li><Icon name="trophy" size={16} />{h}</li>)}
+          </ul>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <section class="section-sm bg-surface">
+    <div class="container">
+      <SectionHead kicker="Seit der Neugründung" title="Die Vorsitzenden des Vereins" align="center" />
+      <Reveal class="timeline">
+        {chairmen.map((c) => (
+          <div class="tl-item">
+            <span class="tl-year">{c.years}</span>
+            <span class="tl-dot" aria-hidden="true"></span>
+            <span class="tl-name">{c.name}</span>
+          </div>
+        ))}
+      </Reveal>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHead kicker="Im Überblick" title="Alles über den YCaT" />
+      <div class="subgrid">
+        {sub.map((s, i) => (
+          <Reveal as="a" href={s.href} class="subcard" delay={i * 60}>
+            <span class="subcard__icon"><Icon name={s.icon} size={22} /></span>
+            <span class="subcard__text">
+              <span class="subcard__label">{s.label}</span>
+              <span class="subcard__desc">{s.desc}</span>
+            </span>
+            <Icon name="arrow-right" size={18} class="subcard__go" />
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <JoinCta />
+</Layout>
+
+<style>
+  .story { display: grid; grid-template-columns: 1.6fr 1fr; gap: clamp(1.6rem, 0.5rem + 4vw, 4rem); align-items: start; }
+  .story__p { margin-top: 1.2rem; }
+  .honors { position: sticky; top: 6.5rem; padding: 1.8rem; background: var(--pine-900); border-radius: var(--radius-lg); color: var(--on-dark); box-shadow: var(--shadow-md); }
+  .honors .kicker { color: var(--brass-400); }
+  .honors .kicker::before { background: var(--brass-400); }
+  .honors__list { list-style: none; padding: 0; margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  .honors__list li { display: flex; align-items: center; gap: 0.7rem; color: oklch(0.94 0.01 165 / 0.92); font-weight: 500; font-size: 0.96rem; }
+  .honors__list svg { color: var(--brass-400); flex-shrink: 0; }
+
+  .timeline { margin-top: 2.6rem; max-width: 720px; margin-inline: auto; border-left: 1px solid var(--line); }
+  .tl-item { display: grid; grid-template-columns: 130px 24px 1fr; align-items: center; padding: 0.65rem 0; position: relative; }
+  .tl-year { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--pine-600); font-size: 0.92rem; padding-left: 1.4rem; }
+  .tl-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--brass-500); margin-left: -5px; box-shadow: 0 0 0 4px var(--surface); }
+  .tl-name { font-family: var(--font-display); font-size: 1.15rem; font-weight: 500; color: var(--pine-900); }
+
+  .subgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.4rem; }
+  .subcard { display: flex; align-items: center; gap: 1rem; padding: 1.4rem; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg); transition: transform 0.5s var(--ease-expo), box-shadow 0.5s var(--ease-expo); }
+  .subcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .subcard__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--lake-200); color: var(--lake-700); flex-shrink: 0; }
+  .subcard__text { display: flex; flex-direction: column; min-width: 0; }
+  .subcard__label { font-family: var(--font-display); font-size: 1.1rem; font-weight: 500; color: var(--pine-900); letter-spacing: -0.01em; }
+  .subcard__desc { font-size: 0.86rem; color: var(--muted); margin-top: 0.2rem; }
+  .subcard__go { color: var(--line-strong); flex-shrink: 0; transition: transform 0.4s var(--ease-expo), color 0.3s; }
+  .subcard:hover .subcard__go { color: var(--pine-700); transform: translateX(3px); }
+
+  @media (max-width: 900px) {
+    .story { grid-template-columns: 1fr; }
+    .honors { position: static; }
+    .subgrid { grid-template-columns: 1fr; }
+    .tl-item { grid-template-columns: 110px 24px 1fr; }
+  }
+</style>

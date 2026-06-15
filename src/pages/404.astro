@@ -1,0 +1,38 @@
+---
+import Layout from "../components/Layout.astro";
+import Icon from "../components/Icon.astro";
+import { Image } from "astro:assets";
+import singleSail from "../assets/photos/single-sail.jpg";
+---
+<Layout title="Seite nicht gefunden" description="Diese Seite konnte nicht gefunden werden.">
+  <section class="nf on-dark">
+    <div class="nf__media">
+      <Image src={singleSail} alt="Segelboot auf dem Tegernsee" class="nf__img" widths={[900, 1500]} sizes="100vw" loading="eager" />
+    </div>
+    <div class="nf__scrim" aria-hidden="true"></div>
+    <div class="container nf__inner">
+      <p class="kicker">Fehler 404</p>
+      <h1 class="nf__title">Vom Kurs abgekommen</h1>
+      <p class="lede nf__lede">
+        Diese Seite hat sich wohl mit dem Föhn verzogen. Kein Problem – zurück in sicheres Fahrwasser:
+      </p>
+      <div class="nf__cta">
+        <a href="/" class="btn btn--accent">Zur Startseite <span class="btn__icon"><Icon name="arrow-right" size={16} /></span></a>
+        <a href="/kontakt/" class="btn btn--ghost">Kontakt <span class="btn__icon"><Icon name="arrow-right" size={15} /></span></a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .nf { position: relative; min-height: 88svh; display: flex; align-items: center; padding-top: 7rem; overflow: clip; isolation: isolate; }
+  .nf__media { position: absolute; inset: 0; z-index: -2; }
+  .nf__img { width: 100%; height: 100%; object-fit: cover; }
+  .nf__scrim { position: absolute; inset: 0; z-index: -1; background: linear-gradient(100deg, oklch(0.17 0.022 158 / 0.92) 25%, oklch(0.18 0.025 158 / 0.5) 65%, oklch(0.2 0.03 160 / 0.2)); }
+  .nf__inner { max-width: 620px; }
+  .nf .kicker { color: var(--brass-400); }
+  .nf .kicker::before { background: var(--brass-400); }
+  .nf__title { color: var(--white); font-size: var(--step-5); margin-top: 1rem; }
+  .nf__lede { color: oklch(0.94 0.01 165 / 0.92); margin-top: 1.2rem; }
+  .nf__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+</style>

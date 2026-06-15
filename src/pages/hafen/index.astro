@@ -1,0 +1,65 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import SectionHead from "../../components/SectionHead.astro";
+import Reveal from "../../components/Reveal.astro";
+import Icon from "../../components/Icon.astro";
+import { Image } from "astro:assets";
+import keelboatCrane from "../../assets/photos/keelboat-crane.jpg";
+import craneHook from "../../assets/photos/crane-hook.jpg";
+import harbour from "../../assets/photos/harbour.jpg";
+import dock from "../../assets/photos/dock.jpg";
+
+const services = [
+  { label: "Kran-Service", href: "/hafen/kran-service/", img: craneHook, icon: "crane", desc: "Krantermine nach Vereinbarung – auch für externe Gäste gegen Gebühr." },
+  { label: "Liegeplätze", href: "/hafen/liegeplaetze/", img: harbour, icon: "anchor", desc: "Boje, Steg und Land – Plätze für reviergeeignete Bootsklassen." },
+  { label: "Arbeitsdienst", href: "/hafen/arbeitsdienst/", img: dock, icon: "users", desc: "Gemeinsam anpacken – Stege, Rasen und Regattabetrieb." },
+];
+---
+<Layout title="Hafen & Services" description="Der Hafen des YCaT am Tegernsee – Kran-Service, Liegeplätze und Arbeitsdienst.">
+  <PageHero
+    image={keelboatCrane}
+    imageAlt="Kielboot am Kran des YCaT-Hafens"
+    kicker="Am Wasser"
+    title="Hafen & Services"
+    lede="Kran, Liegeplätze und der gemeinsame Arbeitsdienst – alles, was den Hafenbetrieb des YCaT ausmacht. Bitte wählt den gewünschten Service."
+    crumbs={[{ label: "Hafen" }]}
+  />
+
+  <section class="section">
+    <div class="container">
+      <SectionHead kicker="Services am Hafen" title="Wobei können wir helfen?" />
+      <div class="svc-grid">
+        {services.map((s, i) => (
+          <Reveal as="a" href={s.href} class="svc" delay={i * 80}>
+            <span class="svc__media">
+              <Image src={s.img} alt={s.label} class="svc__img" widths={[500, 800]} sizes="(max-width:780px) 100vw, 33vw" />
+              <span class="svc__icon"><Icon name={s.icon} size={22} /></span>
+            </span>
+            <span class="svc__body">
+              <span class="svc__label">{s.label} <Icon name="arrow-right" size={17} /></span>
+              <span class="svc__desc">{s.desc}</span>
+            </span>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 2.4rem; }
+  .svc { display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; transition: transform 0.5s var(--ease-expo), box-shadow 0.5s var(--ease-expo); }
+  .svc:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .svc__media { position: relative; aspect-ratio: 16/10; overflow: hidden; }
+  .svc__img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease-expo); }
+  .svc:hover .svc__img { transform: scale(1.06); }
+  .svc__icon { position: absolute; left: 1rem; bottom: 1rem; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 13px; background: oklch(0.99 0.004 160 / 0.92); color: var(--pine-800); backdrop-filter: blur(8px); }
+  .svc__body { padding: 1.4rem 1.5rem 1.7rem; }
+  .svc__label { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-display); font-size: var(--step-1); font-weight: 500; color: var(--pine-900); }
+  .svc__label svg { color: var(--line-strong); transition: transform 0.4s var(--ease-expo), color 0.3s; }
+  .svc:hover .svc__label svg { color: var(--pine-700); transform: translateX(3px); }
+  .svc__desc { display: block; margin-top: 0.5rem; color: var(--ink-soft); font-size: 0.94rem; }
+
+  @media (max-width: 860px) { .svc-grid { grid-template-columns: 1fr; } }
+</style>

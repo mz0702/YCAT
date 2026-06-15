@@ -1,0 +1,8 @@
+URL: https://www.ycat.de/mitglieder/bootsleihe-2/
+TITLE: Bootsverleih – YCaT
+META: 
+
+<p> Dieser Bereich steht nur registrierten Mitgliedern des Yachtclub am Tegernsee zur Verfügung. Wenn Du Clubmitglied bist und noch keine Zugangsdaten hast, dann kannst Du diese bei Alexander Oswald beantragen.
+<a> [LINK] Alexander Oswald -> https://www.ycat.de/der-ycat/vorstand/#alexander-oswald
+<li> Passwort vergessen?
+<a> [LINK] Passwort vergessen? -> https://www.ycat.de/lostpassword/

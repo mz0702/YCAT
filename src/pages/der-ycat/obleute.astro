@@ -1,0 +1,84 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import SectionHead from "../../components/SectionHead.astro";
+import Reveal from "../../components/Reveal.astro";
+import Icon from "../../components/Icon.astro";
+import { obleute, klassenLinks } from "../../data/club";
+import regattaFleet from "../../assets/photos/regatta-fleet.jpg";
+---
+<Layout title="Obleute" description="Die Klassen-Obleute des YCaT – eure Ansprechpartner für 420er, Dyas, Kielzugvogel, H-Boot und Drachen.">
+  <PageHero
+    image={regattaFleet}
+    imageAlt="Regattaboote auf dem Tegernsee"
+    kicker="Der YCaT"
+    title="Obleute der Klassen"
+    lede="Fragen zu einer Bootsklasse? Die Obleute kennen ihr Revier, ihre Flotte und die nächsten Termine – meldet euch direkt."
+    crumbs={[{ label: "Der YCaT", href: "/der-ycat/" }, { label: "Obleute" }]}
+  />
+
+  <section class="section">
+    <div class="container">
+      <Reveal class="ob-list">
+        {obleute.map((o, i) => (
+          <div class="ob-row" style={`--reveal-delay:${i * 60}ms`}>
+            <span class="ob-class"><span class="tag tag--pine">{o.klasse}</span></span>
+            <span class="ob-name">{o.name}</span>
+            <span class="ob-contact">
+              {o.phone && <a href={`tel:${o.phone.replace(/[^+\d]/g, "")}`}><Icon name="phone" size={14} />{o.phone}</a>}
+              {o.email && <a href={`mailto:${o.email}`}><Icon name="mail" size={14} />{o.email}</a>}
+            </span>
+            <span class="ob-link">
+              {o.classLink && <a href={o.classLink.href} target="_blank" rel="noopener" class="link-arrow">{o.classLink.label} <Icon name="arrow-up-right" size={13} /></a>}
+            </span>
+          </div>
+        ))}
+      </Reveal>
+
+      <Reveal as="p" class="ob-hint" delay={120}>
+        <Icon name="flag" size={18} />
+        Für Klassen ohne direkten Ansprechpartner wendet euch bitte an die
+        <a href="/kontakt/">Geschäftsstelle</a> oder einen Vorstand.
+      </Reveal>
+    </div>
+  </section>
+
+  <section class="section-sm bg-surface">
+    <div class="container">
+      <SectionHead kicker="Klassenvereinigungen" title="Weiterführende Klassen-Links" />
+      <Reveal class="klinks">
+        {klassenLinks.map((k, i) => (
+          <a href={k.href} target="_blank" rel="noopener" class="klink" style={`--reveal-delay:${i * 40}ms`}>
+            <span>{k.label}</span>
+            <Icon name="arrow-up-right" size={15} />
+          </a>
+        ))}
+      </Reveal>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .ob-list { border-top: 1px solid var(--line); }
+  .ob-row { display: grid; grid-template-columns: 150px 1fr 1.2fr auto; align-items: center; gap: 1.2rem; padding: 1.2rem 0.6rem; border-bottom: 1px solid var(--line); transition: background-color 0.3s; }
+  .ob-row:hover { background: var(--surface); }
+  .ob-name { font-family: var(--font-display); font-size: 1.18rem; font-weight: 500; color: var(--pine-900); }
+  .ob-contact { display: flex; flex-direction: column; gap: 0.3rem; }
+  .ob-contact a { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.88rem; color: var(--ink-soft); font-weight: 500; transition: color 0.2s; }
+  .ob-contact a:hover { color: var(--lake-700); }
+  .ob-contact svg { color: var(--lake-600); }
+  .ob-hint { margin-top: 2rem; display: flex; gap: 0.7rem; align-items: center; color: var(--muted); font-size: 0.94rem; }
+  .ob-hint svg { color: var(--brass-500); flex-shrink: 0; }
+  .ob-hint a { color: var(--lake-700); text-decoration: underline; text-underline-offset: 3px; margin-inline: 0.15rem; }
+
+  .klinks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; margin-top: 2.2rem; }
+  .klink { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 1rem 1.2rem; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); font-weight: 600; color: var(--pine-800); transition: transform 0.4s var(--ease-expo), box-shadow 0.4s var(--ease-expo); }
+  .klink:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+  .klink svg { color: var(--lake-600); }
+
+  @media (max-width: 860px) {
+    .ob-row { grid-template-columns: 110px 1fr; row-gap: 0.5rem; }
+    .ob-contact, .ob-link { grid-column: 2; }
+    .klinks { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

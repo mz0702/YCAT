@@ -1,0 +1,100 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import Reveal from "../../components/Reveal.astro";
+import Icon from "../../components/Icon.astro";
+import standard02 from "../../assets/photos/standard-02.jpg";
+
+const cams = [
+  { label: "Sonnenbichl – foto-webcam.eu", href: "https://www.foto-webcam.eu/webcam/sonnenbichl/", note: "Panorama über den See" },
+  { label: "Webcam Tegernsee", href: "https://www.webcamtegernsee.de/", note: "Blick auf den See" },
+  { label: "Seewirt Tegernsee", href: "https://www.seewirt-tegernsee.de/", note: "Seepromenade" },
+  { label: "Bayernwebcam – Tegernsee", href: "https://www.bayernwebcam.de/", note: "Tal & Gmund" },
+];
+---
+<Layout title="Webcam" description="Live-Webcams am Tegernsee – aktuelle Bilder der Witterungsbedingungen rund um den See.">
+  <PageHero
+    image={standard02}
+    imageAlt="Segelboote auf dem Tegernsee"
+    kicker="Wind & Wetter"
+    title="Webcam"
+    lede="Ein Blick auf den See, bevor ihr ablegt – aktuelle Webcam-Bilder rund um den Tegernsee."
+    crumbs={[{ label: "Wind & Wetter", href: "/wind-und-wetter/" }, { label: "Webcam" }]}
+    focus="center 50%"
+  />
+
+  <section class="section">
+    <div class="container cam-grid">
+      <Reveal class="cam-feature">
+        <div class="cam-feature__frame">
+          <img id="liveCam" src="https://www.foto-webcam.eu/webcam/sonnenbichl/current/1280.jpg"
+            alt="Live-Webcam Tegernsee – Sonnenbichl" loading="eager" />
+          <span class="cam-feature__live"><span class="cam-feature__dot"></span> Live</span>
+        </div>
+        <p class="cam-feature__cap">
+          Quelle: <a href="https://www.foto-webcam.eu/webcam/sonnenbichl/" target="_blank" rel="noopener">foto-webcam.eu – Sonnenbichl</a>.
+          Das Bild aktualisiert sich automatisch.
+        </p>
+      </Reveal>
+
+      <Reveal class="cam-side" delay={100}>
+        <p class="kicker">Weitere Webcams</p>
+        <ul class="cam-list">
+          {cams.map((c) => (
+            <li>
+              <a href={c.href} target="_blank" rel="noopener">
+                <span class="cam-list__icon"><Icon name="compass" size={17} /></span>
+                <span class="cam-list__text"><strong>{c.label}</strong><em>{c.note}</em></span>
+                <Icon name="arrow-up-right" size={15} class="cam-list__go" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
+    </div>
+
+    <div class="container">
+      <Reveal as="p" class="cam-disclaimer" delay={140}>
+        <Icon name="life-ring" size={17} />
+        Das Webcam-Bild der YCaT-Anlage wird nicht dauerhaft gespeichert und dient der Beobachtung
+        der Witterungsbedingungen sowie der Sicherheit an Kran und Takelmast – nicht der
+        Identifikation von Personen. Eine Zuordnung von Segelnummern, Bootsbewegungen oder Fahrzeugen
+        zu Personen kann jedoch nicht vollständig ausgeschlossen werden.
+      </Reveal>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .cam-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: clamp(1.4rem, 0.5rem + 3vw, 2.6rem); align-items: start; }
+  .cam-feature__frame { position: relative; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow-md); background: var(--surface-2); aspect-ratio: 16/9; }
+  .cam-feature__frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cam-feature__live { position: absolute; top: 1rem; left: 1rem; display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.4rem 0.8rem; border-radius: 999px; background: oklch(0.17 0.022 158 / 0.7); backdrop-filter: blur(8px); color: var(--white); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.02em; }
+  .cam-feature__dot { width: 8px; height: 8px; border-radius: 50%; background: oklch(0.62 0.16 28); box-shadow: 0 0 0 0 oklch(0.62 0.16 28 / 0.6); animation: campulse 2s ease-out infinite; }
+  @keyframes campulse { 0% { box-shadow: 0 0 0 0 oklch(0.62 0.16 28 / 0.5); } 70% { box-shadow: 0 0 0 8px oklch(0.62 0.16 28 / 0); } 100% { box-shadow: 0 0 0 0 oklch(0.62 0.16 28 / 0); } }
+  .cam-feature__cap { margin-top: 0.9rem; font-size: 0.86rem; color: var(--muted); }
+  .cam-feature__cap a { color: var(--lake-700); text-decoration: underline; text-underline-offset: 3px; }
+
+  .cam-list { list-style: none; padding: 0; margin-top: 1.4rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .cam-list a { display: flex; align-items: center; gap: 0.8rem; padding: 0.95rem 1.1rem; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); transition: transform 0.4s var(--ease-expo), box-shadow 0.4s var(--ease-expo); }
+  .cam-list a:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+  .cam-list__icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 11px; background: var(--lake-200); color: var(--lake-700); flex-shrink: 0; }
+  .cam-list__text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+  .cam-list__text strong { color: var(--pine-900); font-weight: 600; font-size: 0.92rem; }
+  .cam-list__text em { font-style: normal; color: var(--muted); font-size: 0.8rem; }
+  .cam-list__go { color: var(--line-strong); flex-shrink: 0; }
+
+  .cam-disclaimer { display: flex; gap: 0.7rem; align-items: flex-start; margin-top: 2rem; padding: 1.3rem 1.6rem; background: var(--surface); border-radius: var(--radius-lg); color: var(--muted); font-size: 0.9rem; max-width: 900px; }
+  .cam-disclaimer svg { color: var(--lake-600); flex-shrink: 0; margin-top: 2px; }
+
+  @media (max-width: 880px) { .cam-grid { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+  // Refresh the live cam image periodically with a cache-buster.
+  const cam = document.getElementById("liveCam") as HTMLImageElement | null;
+  if (cam) {
+    const base = cam.src.split("?")[0];
+    setInterval(() => { cam.src = base + "?t=" + Date.now(); }, 30000);
+  }
+</script>

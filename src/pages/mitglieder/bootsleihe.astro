@@ -1,0 +1,25 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import MemberGate from "../../components/MemberGate.astro";
+import singleSail from "../../assets/photos/single-sail.jpg";
+
+const perks = [
+  { icon: "sail", label: "Verfügbarkeit der Clubboote prüfen" },
+  { icon: "calendar", label: "Boot online reservieren" },
+  { icon: "life-ring", label: "Freigabe durch den Jugendwart" },
+  { icon: "anchor", label: "Nutzungsregeln & Übergabe" },
+];
+---
+<Layout title="Bootsleihe" description="Bootsleihe des YCaT – Clubboote für Mitglieder mit Segelschein. Reservierung im Mitgliederbereich.">
+  <PageHero
+    image={singleSail}
+    imageAlt="Segelboot auf dem Tegernsee"
+    kicker="Mitglieder"
+    title="Bootsleihe"
+    lede="Selbstständig segeln mit unseren Clubbooten – für jugendliche Segler mit Segelschein nach Freigabe durch den Jugendwart, und für Mitglieder."
+    crumbs={[{ label: "Jugend", href: "/jugend/" }, { label: "Bootsleihe" }]}
+    focus="center 45%"
+  />
+  <MemberGate perks={perks} />
+</Layout>

@@ -1,0 +1,73 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import Reveal from "../../components/Reveal.astro";
+import Icon from "../../components/Icon.astro";
+import { Image } from "astro:assets";
+import { sponsors } from "../../data/partners";
+import heroRigging from "../../assets/photos/hero-rigging.jpg";
+---
+<Layout title="Sponsoren" description="Die Partner und Sponsoren des Yacht-Club am Tegernsee – Unterstützer, ohne die fundierte Jugendförderung und Ausbildung nicht möglich wären.">
+  <PageHero
+    image={heroRigging}
+    imageAlt="Takelage und Signalflaggen eines Segelboots am Tegernsee"
+    kicker="Der YCaT"
+    title="Danke an unsere Partner"
+    lede="Besonders im Namen unserer Kinder und Jugendlichen bedanken wir uns bei unseren Unterstützern – ohne deren Hilfe wären fundierte Ausbildung und Förderung nicht möglich."
+    crumbs={[{ label: "Der YCaT", href: "/der-ycat/" }, { label: "Sponsoren" }]}
+  />
+
+  <section class="section">
+    <div class="container">
+      <Reveal class="sgrid">
+        {sponsors.map((s, i) => {
+          const inner = (
+            <>
+              <span class="scard__logo"><Image src={s.logo} alt={`Logo ${s.name}`} widths={[280, 440]} sizes="280px" /></span>
+              <span class="scard__meta">
+                <span class="scard__name">{s.name}</span>
+                <span class="scard__trade">{s.trade}</span>
+              </span>
+              {s.href && <Icon name="arrow-up-right" size={16} class="scard__go" />}
+            </>
+          );
+          return s.href
+            ? <a href={s.href} target="_blank" rel="noopener" class="scard" style={`--reveal-delay:${i * 60}ms`}>{inner}</a>
+            : <div class="scard" style={`--reveal-delay:${i * 60}ms`}>{inner}</div>;
+        })}
+      </Reveal>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <Reveal class="sponsor-cta">
+        <div>
+          <h2>Partner des YCaT werden</h2>
+          <p>Unterstützen Sie den Segelnachwuchs am Tegernsee – wir freuen uns über jedes Engagement und gestalten gerne eine passende Partnerschaft.</p>
+        </div>
+        <a href="/kontakt/" class="btn btn--accent">Kontakt aufnehmen <span class="btn__icon"><Icon name="arrow-right" size={16} /></span></a>
+      </Reveal>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .sgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .scard { display: flex; flex-direction: column; gap: 1rem; padding: 1.6rem; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg); position: relative; transition: transform 0.5s var(--ease-expo), box-shadow 0.5s var(--ease-expo); }
+  a.scard:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .scard__logo { display: grid; place-items: center; height: 120px; padding: 0.8rem 1rem; background: var(--white); border-radius: var(--radius); border: 1px solid var(--surface-2); }
+  .scard__logo img { max-height: 100%; width: auto; object-fit: contain; }
+  .scard__meta { display: flex; flex-direction: column; }
+  .scard__name { font-family: var(--font-display); font-size: 1.1rem; font-weight: 500; color: var(--pine-900); letter-spacing: -0.01em; }
+  .scard__trade { font-size: 0.86rem; color: var(--muted); margin-top: 0.2rem; }
+  .scard__go { position: absolute; top: 1.3rem; right: 1.3rem; color: var(--line-strong); transition: transform 0.4s var(--ease-expo), color 0.3s; }
+  a.scard:hover .scard__go { color: var(--lake-700); transform: translate(2px, -2px); }
+
+  .sponsor-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.6rem; padding: clamp(1.6rem, 1rem + 2vw, 2.6rem); background: var(--surface); border-radius: var(--radius-lg); }
+  .sponsor-cta h2 { font-size: var(--step-2); }
+  .sponsor-cta p { color: var(--ink-soft); margin-top: 0.6rem; max-width: 52ch; }
+
+  @media (max-width: 880px) { .sgrid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .sgrid { grid-template-columns: 1fr; } }
+</style>

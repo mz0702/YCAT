@@ -1,0 +1,91 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import Reveal from "../../components/Reveal.astro";
+import Icon from "../../components/Icon.astro";
+import singleSail from "../../assets/photos/single-sail.jpg";
+
+const winds = [
+  { name: "Talwind (Nordost)", detail: "Tagsüber, mit Hochdruck", strength: "3–4 Bft" },
+  { name: "Bergwind (Süd)", detail: "Nachts bis früher Vormittag", strength: "bis 5 Bft" },
+  { name: "West / Nordwest", detail: "Vor Wetterumschwung, Kaltfront", strength: "böig" },
+  { name: "Föhnsturm (Süd)", detail: "Bei Föhnlage", strength: "bis 7 Bft" },
+];
+const paras = [
+  "Der Tegernsee, am Nordrand der Bayerischen Alpen gelegen, gehört zur untersten Stufe des Hochgebirgsklimas, das als Heilklima sogar therapeutisch eingesetzt wird. Das Wettergeschehen wird stark durch Gebirgszüge und Täler bestimmt – und dank des auftretenden Föhns sind heitere Tage besonders häufig.",
+  "Der Segelwind ist bei Schönwetter durch ein thermisches Windsystem mit Berg-Tal-Wind-Zirkulation geprägt. Untertags entsteht über dem inneralpinen Bergland ein aufsteigender Luftstrom, in dessen Folge Luft aus den Tälern nachströmt. Der vorherrschende Segelwind ist daher ein Nordostwind mit durchschnittlich 3–4 Beaufort.",
+  "Nachts und bis zum frühen Vormittag weht der Bergwind aus Süden über den See. Die in den Alpen rasch abkühlenden, schwereren Luftmassen sinken in die Täler – ein äußerst gleichmäßiger Wind, der in der Früh auf bis zu 5 Bft zunehmen kann.",
+  "West- und Nordwestwind treten vornehmlich vor einem Wetterumschwung auf. Der Durchzug einer Kaltfront wird meist von starkem, böigem Wind begleitet. Ähnliche oder heftigere Stärken bis 7 Bft sind bei Föhnsturm aus Süd nicht untypisch.",
+];
+---
+<Layout title="Wind & Wetter" description="Wind und Wetter am Tegernsee – das thermische Windsystem mit Berg-, Tal- und Föhnwind, erklärt für Segler. Plus Wettervorhersage und Webcam.">
+  <PageHero
+    image={singleSail}
+    imageAlt="Segelboot bei Wind auf dem Tegernsee"
+    kicker="Unser Revier"
+    title="Wind & Wetter"
+    lede="Ein See, der jeden Tag anders segelt: Berg-, Tal- und Föhnwind prägen das thermische Windsystem am Nordrand der Bayerischen Alpen."
+    crumbs={[{ label: "Wind & Wetter" }]}
+    focus="center 50%"
+  />
+
+  <section class="section">
+    <div class="container ww">
+      <div class="ww__main prose">
+        {paras.map((p, i) => <Reveal as="p" class="ww__p" delay={i * 60}>{p}</Reveal>)}
+        <Reveal as="div" class="ww-callout" delay={120}>
+          <Icon name="compass" size={20} />
+          <p>
+            Die Wettfahrten starten meist am späten Vormittag. Bei Südwind in der Früh fällt der
+            Startschuss schon um sechs Uhr. Bevorzugter Regattakurs ist der olympische
+            Up-and-Down-Kurs – bei extremen Lagen wird auf den Dreieckskurs zurückgegriffen.
+          </p>
+        </Reveal>
+      </div>
+
+      <Reveal class="ww__aside" delay={100}>
+        <div class="windcard">
+          <p class="kicker">Windrose am See</p>
+          <ul class="windlist">
+            {winds.map((w) => (
+              <li>
+                <span class="windlist__icon"><Icon name="wind" size={18} /></span>
+                <span class="windlist__text"><strong>{w.name}</strong><em>{w.detail}</em></span>
+                <span class="windlist__str">{w.strength}</span>
+              </li>
+            ))}
+          </ul>
+          <div class="windcard__links">
+            <a href="/wind-und-wetter/wetter/" class="link-arrow">Wettervorhersage <Icon name="arrow-right" size={15} /></a>
+            <a href="/wind-und-wetter/webcam/" class="link-arrow">Live-Webcam <Icon name="arrow-right" size={15} /></a>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .ww { display: grid; grid-template-columns: 1.6fr 1fr; gap: clamp(1.6rem, 0.5rem + 4vw, 3.5rem); align-items: start; }
+  .ww__p { margin-top: 1.1rem; }
+  .ww__p:first-child { margin-top: 0; }
+  .ww-callout { display: flex; gap: 0.9rem; align-items: flex-start; margin-top: 1.8rem; padding: 1.4rem 1.6rem; background: var(--lake-200); border-radius: var(--radius-lg); }
+  .ww-callout svg { color: var(--lake-700); flex-shrink: 0; margin-top: 2px; }
+  .ww-callout p { color: var(--lake-700); font-weight: 500; margin: 0; }
+
+  .windcard { padding: clamp(1.6rem, 1rem + 2vw, 2.2rem); background: var(--pine-900); color: var(--on-dark); border-radius: var(--radius-lg); position: sticky; top: 6.5rem; box-shadow: var(--shadow-md); }
+  .windcard .kicker { color: var(--brass-400); }
+  .windcard .kicker::before { background: var(--brass-400); }
+  .windlist { list-style: none; padding: 0; margin: 1.4rem 0; display: flex; flex-direction: column; }
+  .windlist li { display: flex; align-items: center; gap: 0.8rem; padding: 0.85rem 0; border-bottom: 1px solid oklch(1 0 0 / 0.1); }
+  .windlist li:last-child { border-bottom: 0; }
+  .windlist__icon { color: var(--brass-400); flex-shrink: 0; }
+  .windlist__text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+  .windlist__text strong { color: var(--white); font-weight: 600; font-size: 0.96rem; }
+  .windlist__text em { font-style: normal; color: var(--on-dark-muted); font-size: 0.82rem; }
+  .windlist__str { font-family: var(--font-display); font-weight: 500; color: var(--brass-400); white-space: nowrap; }
+  .windcard__links { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 1.4rem; padding-top: 1.4rem; border-top: 1px solid oklch(1 0 0 / 0.1); }
+  .windcard__links .link-arrow { color: var(--brass-400); }
+
+  @media (max-width: 880px) { .ww { grid-template-columns: 1fr; } .windcard { position: static; } }
+</style>

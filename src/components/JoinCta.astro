@@ -1,0 +1,38 @@
+---
+import Reveal from "./Reveal.astro";
+import Icon from "./Icon.astro";
+interface Props {
+  title?: string;
+  text?: string;
+  variant?: "join" | "contact";
+}
+const {
+  title = "Lust, mit uns zu segeln?",
+  text = "Ob Familie, Nachwuchstalent oder ambitionierter Regattasegler – der YCaT freut sich auf neue Gesichter. Komm vorbei, schnupper Seeluft und werde Teil des Vereins.",
+} = Astro.props;
+---
+<section class="section join bg-pine-deep on-dark">
+  <div class="container join__inner">
+    <Reveal>
+      <p class="kicker">Mitglied werden</p>
+      <h2 class="join__title">{title}</h2>
+      <p class="lede join__lede">{text}</p>
+    </Reveal>
+    <Reveal class="join__cta" delay={120}>
+      <a href="/kontakt/" class="btn btn--accent">Kontakt aufnehmen <span class="btn__icon"><Icon name="arrow-right" size={16} /></span></a>
+      <a href="https://www.ycat.de/wp-content/uploads/2014/04/Aufnahmeantrag-zur-Aufnahme-als-Mitglied-in-den-YCaT-Version-2017.pdf"
+        target="_blank" rel="noopener" class="btn btn--ghost">
+        Aufnahmeantrag (PDF) <span class="btn__icon"><Icon name="download" size={15} /></span>
+      </a>
+    </Reveal>
+  </div>
+</section>
+
+<style>
+  .join { text-align: center; }
+  .join__inner { max-width: 720px; margin-inline: auto; }
+  .join .kicker { justify-content: center; }
+  .join__title { color: var(--white); font-size: var(--step-4); margin-top: 0.8rem; }
+  .join__lede { margin-top: 1.2rem; margin-inline: auto; }
+  .join__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-top: 2.2rem; }
+</style>

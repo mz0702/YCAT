@@ -1,0 +1,44 @@
+---
+import Avatar from "./Avatar.astro";
+import Icon from "./Icon.astro";
+import type { Member } from "../data/club";
+interface Props { member: Member }
+const { member } = Astro.props;
+const telHref = member.phone ? `tel:${member.phone.replace(/[^+\d]/g, "")}` : null;
+const vacant = member.name === "unbesetzt";
+---
+<article class={`mcard ${vacant ? "mcard--vacant" : ""}`}>
+  <Avatar name={member.name} photo={member.photo} size={84} />
+  <div class="mcard__body">
+    <p class="mcard__role">{member.role}</p>
+    <h3 class="mcard__name">{member.name}</h3>
+    {member.detail && <p class="mcard__detail">{member.detail}</p>}
+    {(member.phone || member.email) && (
+      <div class="mcard__contact">
+        {telHref && <a href={telHref}><Icon name="phone" size={15} />{member.phone}</a>}
+        {member.email && <a href={`mailto:${member.email}`}><Icon name="mail" size={15} />{member.email}</a>}
+      </div>
+    )}
+  </div>
+</article>
+
+<style>
+  .mcard {
+    display: flex; gap: 1.1rem;
+    padding: 1.4rem;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    transition: transform 0.5s var(--ease-expo), box-shadow 0.5s var(--ease-expo), border-color 0.3s;
+  }
+  .mcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--line-strong); }
+  .mcard--vacant { opacity: 0.72; }
+  .mcard__body { min-width: 0; }
+  .mcard__role { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--brass-600); margin-bottom: 0.3rem; }
+  .mcard__name { font-size: var(--step-1); letter-spacing: -0.01em; }
+  .mcard__detail { font-size: 0.88rem; color: var(--muted); margin-top: 0.2rem; }
+  .mcard__contact { display: flex; flex-direction: column; gap: 0.35rem; margin-top: 0.8rem; }
+  .mcard__contact a { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.88rem; font-weight: 500; color: var(--ink-soft); transition: color 0.2s; word-break: break-word; }
+  .mcard__contact a:hover { color: var(--lake-700); }
+  .mcard__contact svg { color: var(--lake-600); flex-shrink: 0; }
+</style>

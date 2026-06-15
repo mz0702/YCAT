@@ -1,0 +1,15 @@
+---
+// Scroll-reveal wrapper. Enhances an already-visible default – content is
+// only hidden when JS is active (html.js), and is force-shown for reduced motion.
+interface Props {
+  as?: string;
+  delay?: number;
+  class?: string;
+  [key: string]: any;
+}
+const { as: Tag = "div", delay = 0, class: cls, ...rest } = Astro.props;
+const style = delay ? `--reveal-delay:${delay}ms` : undefined;
+---
+<Tag data-reveal class={cls} style={style} {...rest}>
+  <slot />
+</Tag>

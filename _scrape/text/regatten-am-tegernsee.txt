@@ -1,0 +1,129 @@
+URL: https://www.ycat.de/regatten-am-tegernsee/
+TITLE: Regatten am Tegernsee – YCaT
+META: 
+
+<h2> Saison 2026
+<th> Datum
+<th> Klasse
+<th> Club
+<th> Regatta
+<td> 02.05.-03.05.
+<td> 420er
+<td> Silber 420er
+<a> [LINK] Silber 420er -> https://www.manage2sail.com/de-DE/Club/Detail/c23ad5af-dfda-4a10-84f4-c74880236ff2
+<td> YCaT
+<td> 16.05. – 17.05.
+<td> Opti A/B
+<td> Silber Opti
+<a> [LINK] Silber Opti -> https://www.manage2sail.com/de-DE/Club/Detail/c23ad5af-dfda-4a10-84f4-c74880236ff2
+<td> YCaT
+<td> 04.06.
+<td> Yardstick
+<td> Südwindregatta
+<a> [LINK] Südwindregatta -> https://svre.de/#Regatten
+<td> SVRE
+<td> 06.06. – 07.06.
+<td> H-Boot
+<td> Woipertinger Cup
+<a> [LINK] Woipertinger Cup -> https://www.manage2sail.com/de-DE/Club/Detail/c23ad5af-dfda-4a10-84f4-c74880236ff2
+<td> YCaT
+<td> 13.06. – 14.06.
+<td> VXOne
+<td> Tegernseer Skiff VXOne
+<a> [LINK] Tegernseer Skiff VXOne -> https://svre.de/#Regatten
+<td> SVRE
+<td> 20.06.
+<td> Yardstick
+<td> Oane Gäht No
+<a> [LINK] Oane Gäht No -> https://svre.de/#Regatten
+<td> SVRE
+<td> 20.06. – 21.06.
+<td> Yardstick
+<td> Seemeisterschaft
+<a> [LINK] Seemeisterschaft -> https://svre.de/#Regatten
+<td> SVRE
+<td> 27.06. – 28.06.
+<td> Dyas
+<td> Silber Dyas
+<a> [LINK] Silber Dyas -> https://www.manage2sail.com/de-DE/Club/Detail/c23ad5af-dfda-4a10-84f4-c74880236ff2
+<td> YCaT
+<td> 04.07.
+<td> Yardstick
+<td> Er-Und-Sie-Regatta
+<a> [LINK] Er-Und-Sie-Regatta -> https://www.ycbw.de/regatten-2025/
+<td> YCBW
+<td> 05.07.
+<td> Yardstick
+<td> Frühjahrsregatta Open
+<a> [LINK] Frühjahrsregatta Open -> https://www.ttyc.de/index.php/regatten/meldeformular
+<td> TTYC
+<td> 11.07. – 12.07.
+<td> Star
+<td> Silber Star
+<a> [LINK] Silber Star -> https://www.manage2sail.com/de-DE/Club/Detail/c23ad5af-dfda-4a10-84f4-c74880236ff2
+<td> YCaT
+<td> 18.07. – 19.07.
+<td> Tempest
+<td> Silber Tempest
+<a> [LINK] Silber Tempest -> https://www.manage2sail.com/de-DE/Club/Detail/c23ad5af-dfda-4a10-84f4-c74880236ff2
+<td> YCaT
+<td> 25.07.
+<td> Yardstick
+<td> Clubmeisterschaft und Hafenfest
+<a> [LINK] Clubmeisterschaft und Hafenfest -> https://www.manage2sail.com/de-DE/Club/Detail/c23ad5af-dfda-4a10-84f4-c74880236ff2
+<td> YCaT
+<td> 01.08. – 02.08.
+<td> FD
+<td> IDM mit Silber FD
+<a> [LINK] IDM mit Silber FD -> https://www.manage2sail.com/de-DE/Club/Detail/c23ad5af-dfda-4a10-84f4-c74880236ff2
+<td> YCaT
+<td> 08.08. – 09.08.
+<td> Drachen
+<td> Silber Drachen
+<a> [LINK] Silber Drachen -> https://www.manage2sail.com/de-DE/Club/Detail/c23ad5af-dfda-4a10-84f4-c74880236ff2
+<td> YCaT
+<td> 15.08.
+<td> Yardstick
+<td> Bierschiff-Regatta
+<a> [LINK] Bierschiff-Regatta -> https://www.ttyc.de/index.php/regatten/meldeformular
+<td> TTYC
+<td> 15.08. – 16.08.
+<td> Yardstick
+<td> Nachrallye
+<a> [LINK] Nachrallye -> https://www.manage2sail.com/de-DE/Club/Detail/c23ad5af-dfda-4a10-84f4-c74880236ff2
+<td> YCaT
+<td> 22.08. – 23.08.
+<td> Catstick
+<td> Bayern Cup
+<a> [LINK] Bayern Cup -> https://www.ycbw.de/regatten-2025/
+<td> YCBW
+<td> 29.08. – 30.08.
+<td> KZV
+<td> BayMschft / Silber Kieler
+<a> [LINK] BayMschft / Silber Kieler -> https://www.manage2sail.com/de-DE/Club/Detail/c23ad5af-dfda-4a10-84f4-c74880236ff2
+<td> YCaT
+<td> 06.09.
+<td> Yardstick
+<td> Herbst Open
+<a> [LINK] Herbst Open -> https://www.ttyc.de/index.php/regatten/meldeformular
+<td> TTYC
+<td> 19.09. – 20.09.
+<td> blu26
+<td> blu26 Bayern Cup
+<a> [LINK] blu26 Bayern Cup -> https://www.ycbw.de/regatten-2025/
+<td> YCBW
+<td> 26.09.
+<td> Yardstick
+<td> Absegeln
+<a> [LINK] Absegeln -> https://www.ycbw.de/regatten-2025/
+<td> YCBW
+<td> 10.10. – 11.10.
+<td> Yardstick
+<td> Sail und Ski
+<a> [LINK] Sail und Ski -> https://www.ycbw.de/regatten-2025/
+<td> YCBW
+<td> 06.12.
+<td> FD/Opti
+<td> Nikolaus-Regatta
+<a> [LINK] Nikolaus-Regatta -> https://www.manage2sail.com/de-DE/Club/Detail/c23ad5af-dfda-4a10-84f4-c74880236ff2
+<td> YCaT

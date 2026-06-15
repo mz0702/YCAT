@@ -1,0 +1,141 @@
+---
+import { site, footerLinks } from "../data/site";
+import Burgee from "./Burgee.astro";
+import Icon from "./Icon.astro";
+const year = 2026;
+const telHref = `tel:${site.phone.replace(/[^+\d]/g, "")}`;
+---
+<footer class="footer on-dark">
+  <div class="footer__glow" aria-hidden="true"></div>
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <a href="/" class="footer__logo" aria-label={`${site.name} – Startseite`}>
+        <Burgee size={44} />
+        <span>
+          <strong>Yacht-Club am Tegernsee</strong>
+          <em>{site.tagline}</em>
+        </span>
+      </a>
+      <p class="footer__addr">
+        <Icon name="pin" size={17} />
+        <span>{site.address.street}<br />{site.address.zip} {site.address.city}</span>
+      </p>
+      <div class="footer__contact">
+        <a href={telHref}><Icon name="phone" size={16} /> {site.phone}</a>
+        <a href={`mailto:${site.email}`}><Icon name="mail" size={16} /> {site.email}</a>
+      </div>
+      <div class="footer__social">
+        <a href={site.facebook} target="_blank" rel="noopener" aria-label="Facebook"><Icon name="facebook" size={18} /></a>
+        <a href="https://www.ycat.de/feed/rss/" target="_blank" rel="noopener" aria-label="RSS Feed"><Icon name="rss" size={18} /></a>
+      </div>
+    </div>
+
+    <nav class="footer__col" aria-label="Verein">
+      <h3>Verein</h3>
+      <ul>{footerLinks.club.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+    </nav>
+
+    <nav class="footer__col" aria-label="Service">
+      <h3>Service</h3>
+      <ul>{footerLinks.service.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+    </nav>
+
+    <div class="footer__col footer__docs">
+      <h3>Mitglied werden</h3>
+      <p>Lust auf Segeln am schönsten Voralpensee? Werde Teil des YCaT.</p>
+      <ul>
+        {footerLinks.documents.map((l) => (
+          <li><a href={l.href} target="_blank" rel="noopener" class="footer__doc"><Icon name="download" size={15} /> {l.label}</a></li>
+        ))}
+      </ul>
+      <a href="/kontakt/" class="footer__cta">
+        Kontakt aufnehmen <Icon name="arrow-right" size={16} />
+      </a>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>© {year} {site.name} e.V. · Seit {site.founded} am Tegernsee.</p>
+    <ul>
+      {footerLinks.legal.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+    background: var(--pine-950);
+    padding-top: clamp(3.5rem, 2rem + 6vw, 6rem);
+    overflow: clip;
+  }
+  .footer__glow {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(70% 60% at 12% 0%, oklch(0.4 0.06 175 / 0.35), transparent 60%),
+      radial-gradient(60% 70% at 95% 30%, oklch(0.46 0.066 156 / 0.3), transparent 60%);
+  }
+  .footer__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1.5fr;
+    gap: clamp(1.6rem, 1rem + 3vw, 3.5rem);
+    padding-bottom: 3.5rem;
+  }
+  .footer__logo { display: inline-flex; align-items: center; gap: 0.85rem; }
+  .footer__logo strong { display: block; font-family: var(--font-display); font-weight: 500; font-size: 1.15rem; color: var(--white); letter-spacing: -0.01em; }
+  .footer__logo em { display: block; font-style: normal; font-size: 0.82rem; color: var(--on-dark-muted); margin-top: 2px; }
+  .footer__addr { display: flex; gap: 0.6rem; margin-top: 1.5rem; color: var(--on-dark-muted); line-height: 1.5; }
+  .footer__addr svg { color: var(--brass-400); flex-shrink: 0; margin-top: 2px; }
+  .footer__contact { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1.2rem; }
+  .footer__contact a { display: inline-flex; align-items: center; gap: 0.55rem; color: var(--on-dark-muted); font-weight: 500; transition: color 0.2s; }
+  .footer__contact a:hover { color: var(--white); }
+  .footer__contact svg { color: var(--brass-400); }
+  .footer__social { display: flex; gap: 0.5rem; margin-top: 1.5rem; }
+  .footer__social a {
+    display: grid; place-items: center; width: 40px; height: 40px;
+    border-radius: 12px; background: oklch(1 0 0 / 0.06); color: var(--on-dark);
+    transition: background-color 0.25s, transform 0.3s var(--ease-expo);
+  }
+  .footer__social a:hover { background: var(--brass-500); color: var(--pine-950); transform: translateY(-2px); }
+
+  .footer__col h3 {
+    font-family: var(--font-sans);
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--brass-400);
+    margin-bottom: 1.1rem;
+  }
+  .footer__col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.65rem; }
+  .footer__col a { color: var(--on-dark-muted); font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
+  .footer__col a:hover { color: var(--white); }
+  .footer__docs p { color: var(--on-dark-muted); font-size: 0.92rem; margin-bottom: 1rem; max-width: 32ch; }
+  .footer__doc { display: inline-flex; align-items: center; gap: 0.45rem; }
+  .footer__doc svg { color: var(--brass-400); }
+  .footer__cta {
+    display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.4rem;
+    padding: 0.7rem 1.3rem; border-radius: 999px;
+    border: 1px solid oklch(1 0 0 / 0.2); color: var(--white); font-weight: 600; font-size: 0.92rem;
+    transition: gap 0.3s var(--ease-expo), background-color 0.3s, border-color 0.3s;
+  }
+  .footer__cta:hover { gap: 0.8rem; background: oklch(1 0 0 / 0.07); border-color: oklch(1 0 0 / 0.4); }
+
+  .footer__bottom {
+    position: relative;
+    display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center;
+    padding-block: 1.6rem;
+    border-top: 1px solid oklch(1 0 0 / 0.1);
+  }
+  .footer__bottom p { color: var(--on-dark-muted); font-size: 0.86rem; }
+  .footer__bottom ul { display: flex; gap: 1.4rem; list-style: none; padding: 0; }
+  .footer__bottom a { color: var(--on-dark-muted); font-size: 0.86rem; font-weight: 500; transition: color 0.2s; }
+  .footer__bottom a:hover { color: var(--white); }
+
+  @media (max-width: 900px) {
+    .footer__grid { grid-template-columns: 1fr 1fr; }
+    .footer__brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 540px) {
+    .footer__grid { grid-template-columns: 1fr; gap: 2.2rem; }
+    .footer__bottom { flex-direction: column; align-items: flex-start; }
+  }
+</style>

@@ -1,0 +1,104 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import Reveal from "../../components/Reveal.astro";
+import Icon from "../../components/Icon.astro";
+import JoinCta from "../../components/JoinCta.astro";
+import regatta420 from "../../assets/photos/regatta-420.jpg";
+
+const lounge = [
+  { name: "Allgemeines Grundlagentraining", note: "Regelmäßiges, freizeitorientiertes Training für Segler." },
+  { name: "Optis", note: "Regelmäßiges Training für Segler." },
+  { name: "29er, 420er & Laser", note: "Kennenlernen dieser Bootsklassen." },
+  { name: "RS Feva XL", note: "Regelmäßiges Training für Segler." },
+  { name: "Freies Segeln / Bootsleihe", note: "Für jugendliche Segler mit Segelschein nach Freigabe durch den Jugendwart." },
+];
+const sport = [
+  { name: "Opti A", note: "Einladungstraining für fortgeschrittene Regattasegler." },
+  { name: "Opti B", note: "Regelmäßiges sportliches Training für Segler mit Regatta-Ambitionen." },
+  { name: "29er", note: "Regelmäßiges sportliches Training für Segler mit Regatta-Ambitionen." },
+  { name: "420er", note: "Einladungstrainings." },
+];
+---
+<Layout title="Training" description="Jugendtraining im YCaT – die freizeitorientierte Sailing Lounge und der leistungsorientierte Sportsclub mit Regattatraining.">
+  <PageHero
+    image={regatta420}
+    imageAlt="Jugendliche Regattasegler auf dem Tegernsee"
+    kicker="Next Generation Sailing"
+    title="Training"
+    lede="Zwei Wege, ein Ziel: die Liebe zum Segeln. Ob entspannt in der Sailing Lounge oder ambitioniert im Sportsclub – wir trainieren auf jedem Niveau."
+    crumbs={[{ label: "Jugend", href: "/jugend/" }, { label: "Training" }]}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="tr-groups">
+        <Reveal as="article" class="tr-group tr-group--lounge">
+          <span class="tr-group__icon"><Icon name="waves" size={24} /></span>
+          <span class="tr-group__tag">Spaß & Natur</span>
+          <h2>Sailing Lounge</h2>
+          <p class="tr-group__lead">
+            Unsere Fun-Truppe, die einfach Wind und Wasser liebt – abschalten vom Schulstress,
+            Freunde treffen und den See genießen. Auf spielerische Art wird Segeln zum Hobby.
+            Segelspaß pur!
+          </p>
+          <ul class="tr-list">
+            {lounge.map((g) => (
+              <li><strong>{g.name}</strong><span>{g.note}</span></li>
+            ))}
+          </ul>
+        </Reveal>
+
+        <Reveal as="article" class="tr-group tr-group--sport" delay={100}>
+          <span class="tr-group__icon"><Icon name="trophy" size={24} /></span>
+          <span class="tr-group__tag">Leistung & Regatta</span>
+          <h2>Sportsclub</h2>
+          <p class="tr-group__lead">
+            Unsere Sport-Truppe sucht den Wettkampf. Taktisches Verhalten und die erfolgreiche
+            Vorgehensweise bei Regatten stehen auf dem Lehrplan – dazu Blocktrainings und Camps mit
+            national und international bekannten Trainern. Segeln mit Leistungsanspruch!
+          </p>
+          <ul class="tr-list">
+            {sport.map((g) => (
+              <li><strong>{g.name}</strong><span>{g.note}</span></li>
+            ))}
+          </ul>
+        </Reveal>
+      </div>
+
+      <Reveal as="p" class="tr-coop" delay={140}>
+        <Icon name="users" size={18} />
+        Kooperationen und Trainingsgemeinschaften mit anderen Segel- und Yachtclubs an verschiedenen
+        nationalen und internationalen Seen runden die Möglichkeiten ab.
+      </Reveal>
+    </div>
+  </section>
+
+  <JoinCta title="Bereit für deine Trainingsgruppe?" text="Wir ordnen jeden jungen Segler nach Sichtung der passenden Gruppe zu. Sprich uns an – oder starte mit einem Segelkurs." />
+</Layout>
+
+<style>
+  .tr-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .tr-group { padding: clamp(1.6rem, 1rem + 2vw, 2.6rem); border-radius: var(--radius-lg); border: 1px solid var(--line); background: var(--white); }
+  .tr-group--sport { background: var(--pine-900); color: var(--on-dark); border-color: transparent; }
+  .tr-group__icon { display: grid; place-items: center; width: 54px; height: 54px; border-radius: 16px; background: var(--lake-200); color: var(--lake-700); }
+  .tr-group--sport .tr-group__icon { background: oklch(1 0 0 / 0.1); color: var(--brass-400); }
+  .tr-group__tag { display: inline-block; margin-top: 1.2rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--brass-600); }
+  .tr-group--sport .tr-group__tag { color: var(--brass-400); }
+  .tr-group h2 { font-size: var(--step-2); margin: 0.3rem 0 0.7rem; }
+  .tr-group--sport h2 { color: var(--white); }
+  .tr-group__lead { color: var(--ink-soft); }
+  .tr-group--sport .tr-group__lead { color: oklch(0.92 0.01 165 / 0.85); }
+  .tr-list { list-style: none; padding: 0; margin-top: 1.6rem; display: flex; flex-direction: column; }
+  .tr-list li { display: flex; flex-direction: column; gap: 0.15rem; padding: 0.85rem 0; border-top: 1px solid var(--line); }
+  .tr-group--sport .tr-list li { border-color: oklch(1 0 0 / 0.1); }
+  .tr-list strong { font-family: var(--font-display); font-size: 1.1rem; font-weight: 500; color: var(--pine-900); letter-spacing: -0.005em; }
+  .tr-group--sport .tr-list strong { color: var(--white); }
+  .tr-list span { font-size: 0.9rem; color: var(--muted); }
+  .tr-group--sport .tr-list span { color: var(--on-dark-muted); }
+
+  .tr-coop { display: flex; gap: 0.7rem; align-items: flex-start; margin-top: 2rem; padding: 1.4rem 1.6rem; background: var(--surface); border-radius: var(--radius-lg); color: var(--ink-soft); font-size: 0.95rem; }
+  .tr-coop svg { color: var(--lake-600); flex-shrink: 0; margin-top: 2px; }
+
+  @media (max-width: 880px) { .tr-groups { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,127 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import SectionHead from "../../components/SectionHead.astro";
+import Reveal from "../../components/Reveal.astro";
+import Icon from "../../components/Icon.astro";
+import { courses2026, ausbildungsinhalte } from "../../data/schedule";
+import optiFleet from "../../assets/photos/opti-fleet.jpg";
+---
+<Layout title="Segelkurse 2026" description="Jugend-Segelkurse 2026 im YCaT – Termine, Ausbildungsziel DSV Jugendsegelschein und Anmeldung. Auch für Nichtmitglieder von 6 bis 15 Jahren.">
+  <PageHero
+    image={optiFleet}
+    imageAlt="Optimisten-Flotte beim Segelkurs auf dem Tegernsee"
+    kicker="Next Generation Sailing"
+    title="Segelkurse 2026"
+    lede="Spielerisch den Umgang mit dem Segelboot lernen – im Optimist oder RS Feva, für Kinder und Jugendliche von 6 bis 15 Jahren. Eine Mitgliedschaft ist nicht erforderlich."
+    crumbs={[{ label: "Jugend", href: "/jugend/" }, { label: "Segelkurse" }]}
+  />
+
+  <section class="section">
+    <div class="container kurse-grid">
+      <div>
+        <SectionHead kicker="Termine & Informationen 2026" title="Kurstermine im Überblick" />
+        <Reveal class="kurse-table" delay={60}>
+          {courses2026.map((c, i) => (
+            <div class="krow" style={`--reveal-delay:${i * 50}ms`}>
+              <span class="krow__date"><Icon name="calendar" size={16} />{c.date}</span>
+              <span class="krow__title">
+                {c.title}
+                {c.status === "ausgebucht" && <span class="badge badge--full">ausgebucht</span>}
+                {c.status === "neu" && <span class="badge badge--new">neu</span>}
+              </span>
+              <span class="krow__cap"><Icon name="users" size={15} />{c.capacity}</span>
+            </div>
+          ))}
+        </Reveal>
+        <Reveal as="p" class="kurse-note" delay={120}>
+          <Icon name="life-ring" size={17} />
+          Zur Sicherstellung hoher Betreuungs- und Ausbildungsqualität beschränken wir die
+          Teilnehmerzahl strikt. Bitte aus organisatorischen Gründen pro Teilnehmer eine Anmeldung
+          ausfüllen. Weitere Kurse bei entsprechender Nachfrage.
+        </Reveal>
+        <Reveal class="kurse-flyer" delay={160}>
+          <a href="https://www.ycat.de/wp-content/uploads/2022/06/YCAT_SegelkurseFlyer_2022.pdf" target="_blank" rel="noopener" class="btn btn--ghost">
+            Informations-Flyer (PDF) <span class="btn__icon"><Icon name="download" size={15} /></span>
+          </a>
+        </Reveal>
+      </div>
+
+      <Reveal class="anmeldung" delay={100}>
+        <p class="kicker">Anmeldung & Fragen</p>
+        <h3>Geschäftsstelle</h3>
+        <p class="anmeldung__person">Fr. Buchberger</p>
+        <ul class="anmeldung__list">
+          <li><Icon name="phone" size={17} /><a href="tel:+49802210114">+49 (0)8022 10114</a></li>
+          <li><Icon name="external" size={17} /><span>Fax +49 (0)8022 10176</span></li>
+          <li><Icon name="mail" size={17} /><a href="mailto:info@ycat.de">info@ycat.de</a></li>
+        </ul>
+        <a href="mailto:info@ycat.de?subject=Anmeldung%20Segelkurs%202026" class="btn btn--accent anmeldung__btn">
+          Jetzt anmelden <span class="btn__icon"><Icon name="arrow-right" size={16} /></span>
+        </a>
+      </Reveal>
+    </div>
+  </section>
+
+  <section class="section-sm bg-surface">
+    <div class="container ausbildung">
+      <div class="ausbildung__text">
+        <SectionHead kicker="Ausbildungsziel" title="Der DSV-Jugendsegelschein" />
+        <Reveal as="p" class="prose" delay={80}>
+          Ziel der Segelkurse im YCaT ist die Erlangung des DSV-Jugendsegelscheins. Dieser offizielle
+          Schein des Deutschen Seglerverbandes berechtigt zum Führen altersgerechter Segelboote und
+          ist Voraussetzung für Jüngsten- und Jugendregatten, für weiterführende Trainings und um
+          Clubboote für freie Trainingseinheiten ausleihen zu dürfen. Die Ausbildung erfolgt
+          zweistufig – für die Jüngsten (6–11 Jahre) im Optimist, für die Größeren im RS Feva.
+        </Reveal>
+      </div>
+      <Reveal class="ausbildung__inhalte" delay={120}>
+        <p class="kicker">Kursinhalte</p>
+        <ul class="inhalte">
+          {ausbildungsinhalte.map((it) => <li><Icon name="arrow-right" size={15} />{it}</li>)}
+        </ul>
+      </Reveal>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .kurse-grid { display: grid; grid-template-columns: 1.7fr 1fr; gap: clamp(1.6rem, 0.5rem + 4vw, 3.5rem); align-items: start; }
+  .kurse-table { margin-top: 2rem; border-top: 1px solid var(--line); }
+  .krow { display: grid; grid-template-columns: 190px 1fr auto; align-items: center; gap: 1.2rem; padding: 1.05rem 0.4rem; border-bottom: 1px solid var(--line); }
+  .krow__date { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--pine-700); font-variant-numeric: tabular-nums; font-size: 0.95rem; }
+  .krow__date svg { color: var(--brass-500); }
+  .krow__title { font-family: var(--font-display); font-size: 1.12rem; font-weight: 500; color: var(--pine-900); display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+  .krow__cap { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--muted); font-size: 0.86rem; font-weight: 500; white-space: nowrap; }
+  .krow__cap svg { color: var(--lake-600); }
+  .badge { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; padding: 0.2rem 0.5rem; border-radius: 6px; }
+  .badge--full { background: oklch(0.62 0.13 28 / 0.14); color: oklch(0.5 0.16 28); }
+  .badge--new { background: var(--brass-200); color: var(--brass-600); }
+
+  .kurse-note { display: flex; gap: 0.7rem; align-items: flex-start; margin-top: 1.6rem; color: var(--muted); font-size: 0.92rem; }
+  .kurse-note svg { color: var(--brass-500); flex-shrink: 0; margin-top: 2px; }
+  .kurse-flyer { margin-top: 1.6rem; }
+
+  .anmeldung { padding: clamp(1.6rem, 1rem + 2vw, 2.2rem); background: var(--pine-900); color: var(--on-dark); border-radius: var(--radius-lg); position: sticky; top: 6.5rem; box-shadow: var(--shadow-md); }
+  .anmeldung .kicker { color: var(--brass-400); }
+  .anmeldung .kicker::before { background: var(--brass-400); }
+  .anmeldung h3 { color: var(--white); margin-top: 0.7rem; }
+  .anmeldung__person { color: oklch(0.94 0.01 165 / 0.9); margin-top: 0.2rem; }
+  .anmeldung__list { list-style: none; padding: 0; margin: 1.4rem 0; display: flex; flex-direction: column; gap: 0.8rem; }
+  .anmeldung__list li { display: flex; align-items: center; gap: 0.7rem; color: oklch(0.94 0.01 165 / 0.92); }
+  .anmeldung__list svg { color: var(--brass-400); }
+  .anmeldung__list a:hover { color: var(--brass-400); }
+  .anmeldung__btn { margin-top: 0.4rem; }
+
+  .ausbildung { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(1.6rem, 0.5rem + 4vw, 4rem); align-items: start; }
+  .inhalte { list-style: none; padding: 0; margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .inhalte li { display: flex; align-items: center; gap: 0.6rem; color: var(--ink-soft); font-weight: 500; padding: 0.55rem 0; border-bottom: 1px solid var(--line); }
+  .inhalte svg { color: var(--brass-500); flex-shrink: 0; }
+
+  @media (max-width: 880px) {
+    .kurse-grid, .ausbildung { grid-template-columns: 1fr; }
+    .anmeldung { position: static; }
+    .krow { grid-template-columns: 150px 1fr; }
+    .krow__cap { grid-column: 2; }
+  }
+</style>

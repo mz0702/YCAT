@@ -1,0 +1,25 @@
+---
+// Brand mark: a refined swallow-tail club burgee on its staff.
+// Pine field, lake stripe, sail-white notch – an elegant nod to the original YCaT pennant.
+interface Props { class?: string; size?: number; }
+const { class: cls = "", size = 34 } = Astro.props;
+const id = "bg" + Math.random().toString(36).slice(2, 8);
+---
+<svg class={cls} width={size} height={size * 0.82} viewBox="0 0 100 82" fill="none"
+  xmlns="http://www.w3.org/2000/svg" role="img" aria-label="YCaT Burgee">
+  <defs>
+    <linearGradient id={`${id}-f`} x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="oklch(0.46 0.066 156)"/>
+      <stop offset="1" stop-color="oklch(0.33 0.052 156)"/>
+    </linearGradient>
+  </defs>
+  <!-- staff -->
+  <line x1="9" y1="4" x2="9" y2="80" stroke="oklch(0.46 0.024 162)" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="9" cy="5" r="3.1" fill="oklch(0.74 0.12 73)"/>
+  <!-- pennant field with swallow tail -->
+  <path d="M11 9 L92 9 L74 27 L92 45 L11 45 Z" fill={`url(#${id}-f)`}/>
+  <!-- lake stripe -->
+  <path d="M11 38 L78 38 L70 42 L11 42 Z" fill="oklch(0.66 0.082 200)"/>
+  <!-- sail mark -->
+  <path d="M28 14 C40 19 45 25 45 35 L28 35 Z" fill="oklch(0.98 0.005 165)" opacity="0.95"/>
+</svg>

@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+interface Props { name: string; photo?: ImageMetadata; size?: number; }
+const { name, photo, size = 92 } = Astro.props;
+const initials = name
+  .replace(/^(Dr\.?|Prof\.?|h\.?\s?c\.?)\s*/gi, "")
+  .split(/\s+/)
+  .filter(Boolean)
+  .slice(0, 2)
+  .map((w) => w[0])
+  .join("")
+  .toUpperCase();
+---
+{photo ? (
+  <Image src={photo} alt={`Porträt von ${name}`} width={size * 2} height={size * 2}
+    class="avatar avatar--photo" style={`--s:${size}px`} loading="lazy" />
+) : (
+  <span class="avatar avatar--mono" style={`--s:${size}px`} aria-hidden="true">{initials}</span>
+)}
+
+<style>
+  .avatar {
+    width: var(--s);
+    height: var(--s);
+    border-radius: 18px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .avatar--photo {
+    box-shadow: 0 1px 0 oklch(1 0 0 / 0.5) inset, var(--shadow-sm);
+    filter: saturate(1.02);
+  }
+  .avatar--mono {
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-size: calc(var(--s) * 0.34);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--pine-700);
+    background:
+      radial-gradient(120% 120% at 30% 20%, oklch(0.90 0.032 198 / 0.7), transparent 60%),
+      var(--surface-2);
+    border: 1px solid var(--line);
+  }
+</style>

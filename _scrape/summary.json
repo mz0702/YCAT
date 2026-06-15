@@ -1,0 +1,177 @@
+[
+  {
+    "slug": "home",
+    "url": "https://www.ycat.de/",
+    "ok": true,
+    "lines": 54,
+    "images": 15
+  },
+  {
+    "slug": "der-ycat",
+    "url": "https://www.ycat.de/der-ycat/",
+    "ok": true,
+    "lines": 5,
+    "images": 3
+  },
+  {
+    "slug": "vorstand",
+    "url": "https://www.ycat.de/der-ycat/vorstand/",
+    "ok": true,
+    "lines": 9,
+    "images": 19
+  },
+  {
+    "slug": "erweiterter-vorstand",
+    "url": "https://www.ycat.de/der-ycat/erweiterter-vorstand/",
+    "ok": true,
+    "lines": 15,
+    "images": 9
+  },
+  {
+    "slug": "obleute",
+    "url": "https://www.ycat.de/der-ycat/obleute/",
+    "ok": true,
+    "lines": 14,
+    "images": 5
+  },
+  {
+    "slug": "bootsklassen",
+    "url": "https://www.ycat.de/der-ycat/bootsklassen/",
+    "ok": true,
+    "lines": 38,
+    "images": 5
+  },
+  {
+    "slug": "sponsoren",
+    "url": "https://www.ycat.de/der-ycat/sponsoren/",
+    "ok": true,
+    "lines": 1,
+    "images": 13
+  },
+  {
+    "slug": "kontakt",
+    "url": "https://www.ycat.de/kontakt/",
+    "ok": true,
+    "lines": 4,
+    "images": 2
+  },
+  {
+    "slug": "aktuelles",
+    "url": "https://www.ycat.de/aktuelles/",
+    "ok": true,
+    "lines": 48,
+    "images": 5
+  },
+  {
+    "slug": "regatten-am-tegernsee",
+    "url": "https://www.ycat.de/regatten-am-tegernsee/",
+    "ok": true,
+    "lines": 125,
+    "images": 3
+  },
+  {
+    "slug": "jugend",
+    "url": "https://www.ycat.de/jugend-aktivitaeten.html",
+    "ok": true,
+    "lines": 4,
+    "images": 3
+  },
+  {
+    "slug": "segelkurse",
+    "url": "https://www.ycat.de/jugend-aktivitaeten-html/segelkurse/",
+    "ok": true,
+    "lines": 40,
+    "images": 3
+  },
+  {
+    "slug": "training",
+    "url": "https://www.ycat.de/jugend-aktivitaeten-html/training/",
+    "ok": true,
+    "lines": 21,
+    "images": 3
+  },
+  {
+    "slug": "bootsleihe",
+    "url": "https://www.ycat.de/mitglieder/bootsleihe-2/",
+    "ok": true,
+    "lines": 4,
+    "images": 3
+  },
+  {
+    "slug": "hafen",
+    "url": "https://www.ycat.de/hafen/",
+    "ok": true,
+    "lines": 2,
+    "images": 4
+  },
+  {
+    "slug": "arbeitsdienst",
+    "url": "https://www.ycat.de/hafen/arbeitsdienst/",
+    "ok": true,
+    "lines": 5,
+    "images": 2
+  },
+  {
+    "slug": "kran-service",
+    "url": "https://www.ycat.de/hafen/kran-service/",
+    "ok": true,
+    "lines": 6,
+    "images": 3
+  },
+  {
+    "slug": "liegeplaetze",
+    "url": "https://www.ycat.de/hafen/liegeplaetze/",
+    "ok": true,
+    "lines": 10,
+    "images": 2
+  },
+  {
+    "slug": "wind-und-wetter",
+    "url": "https://www.ycat.de/wind-und-wetter/",
+    "ok": true,
+    "lines": 5,
+    "images": 3
+  },
+  {
+    "slug": "wetter",
+    "url": "https://www.ycat.de/wind-und-wetter/wetter/",
+    "ok": true,
+    "lines": 1,
+    "images": 6
+  },
+  {
+    "slug": "webcam",
+    "url": "https://www.ycat.de/wind-und-wetter/webcam/",
+    "ok": true,
+    "lines": 0,
+    "images": 11
+  },
+  {
+    "slug": "mitglieder",
+    "url": "https://www.ycat.de/mitglieder/",
+    "ok": true,
+    "lines": 4,
+    "images": 3
+  },
+  {
+    "slug": "links",
+    "url": "https://www.ycat.de/links/",
+    "ok": true,
+    "lines": 22,
+    "images": 3
+  },
+  {
+    "slug": "rechtlicher-hinweis",
+    "url": "https://www.ycat.de/rechtlicher-hinweis/",
+    "ok": true,
+    "lines": 44,
+    "images": 3
+  },
+  {
+    "slug": "impressum",
+    "url": "https://www.ycat.de/impressum/",
+    "ok": true,
+    "lines": 7,
+    "images": 3
+  }
+]

@@ -1,0 +1,111 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import SectionHead from "../../components/SectionHead.astro";
+import Reveal from "../../components/Reveal.astro";
+import Icon from "../../components/Icon.astro";
+import JoinCta from "../../components/JoinCta.astro";
+import { Image } from "astro:assets";
+import youthGroup from "../../assets/photos/youth-group.jpg";
+import optiFleet from "../../assets/photos/opti-fleet.jpg";
+
+const paths = [
+  {
+    tag: "Spaß & Natur", icon: "waves", title: "Sailing Lounge",
+    text: "Unsere Fun-Truppe, die einfach Wind und Wasser liebt. Abschalten vom Schulstress, Freunde treffen und den See genießen – Segelspaß pur unter fachlicher Anleitung.",
+    href: "/jugend/training/", cta: "Zum Training",
+  },
+  {
+    tag: "Wettkampf & Regatta", icon: "trophy", title: "Sailing Sportsclub",
+    text: "Unsere Sport-Truppe sucht den Wettkampf. Taktik, Bootstrimm und Regatta-Erfahrung – mit Blocktrainings und Camps national wie international bekannter Trainer.",
+    href: "/jugend/training/", cta: "Zum Regattatraining",
+  },
+];
+const boats = ["Optimist", "RS Feva XL", "29er", "420er", "Laser"];
+---
+<Layout title="Jugend – Next Generation Sailing" description="Jugend & Nachwuchs im YCaT – Segelkurse, Training in Sailing Lounge und Sportsclub, vom Jüngstenschein bis zur internationalen Regatta.">
+  <PageHero
+    image={youthGroup}
+    imageAlt="Junge Seglerinnen und Segler des YCaT"
+    kicker="Next Generation Sailing"
+    title="Jugend & Nachwuchs"
+    lede="Vom ersten Schlag im Optimist bis zur internationalen Regatta – beim YCaT findet jeder junge Segler seinen Kurs."
+    crumbs={[{ label: "Jugend" }]}
+  />
+
+  <section class="section">
+    <div class="container jugend-intro">
+      <SectionHead kicker="Die ganze Bandbreite" title="Für jedes Können das richtige Boot" />
+      <Reveal as="p" class="lede jugend-intro__lede" delay={80}>
+        Wir bieten unseren Kids und Jugendlichen die volle Bandbreite der national und international
+        etablierten Jugendboote. Die Trainings werden – von leistungsorientiert bis spaßorientiert –
+        auf das jeweilige Können der jungen Nachwuchssegler abgestimmt.
+      </Reveal>
+      <Reveal class="jugend-boats" delay={140}>
+        {boats.map((b) => <span class="bk-chip">{b}</span>)}
+      </Reveal>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="paths">
+        {paths.map((p, i) => (
+          <Reveal as="article" class="path" delay={i * 90}>
+            <span class="path__icon"><Icon name={p.icon} size={24} /></span>
+            <span class="path__tag">{p.tag}</span>
+            <h3>{p.title}</h3>
+            <p>{p.text}</p>
+            <a href={p.href} class="link-arrow">{p.cta} <Icon name="arrow-right" size={16} /></a>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section kurse-band">
+    <div class="container kurse-band__inner">
+      <Reveal class="kurse-band__media">
+        <Image src={optiFleet} alt="Optimisten-Training auf dem Tegernsee" class="kurse-band__img" widths={[600, 1000]} sizes="(max-width:880px) 100vw, 48vw" />
+      </Reveal>
+      <div class="kurse-band__text">
+        <SectionHead kicker="Der Einstieg" title="Segelkurse – auch für Nichtmitglieder" />
+        <Reveal as="p" class="prose" delay={80}>
+          Um den Einstieg in die Welt des Segelsports zu finden, bieten wir vielfältige Segelkurse
+          verschiedener Altersklassen an – mit dem Ziel, nach zwei Kursen den Jüngstenschein
+          abzulegen. Danach besteht die Möglichkeit, einer Jugendgruppe beizutreten und für
+          selbstständiges Segeln unsere Clubboote zu entleihen.
+        </Reveal>
+        <Reveal class="kurse-band__cta" delay={140}>
+          <a href="/jugend/segelkurse/" class="btn btn--accent">Segelkurse 2026 <span class="btn__icon"><Icon name="arrow-right" size={16} /></span></a>
+          <a href="/mitglieder/bootsleihe/" class="link-arrow">Bootsleihe für Mitglieder <Icon name="arrow-right" size={15} /></a>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+
+  <JoinCta title="Werde Teil der jungen Crew" text="Schnupperkurs, Mitgliedschaft oder Regattaambitionen – wir begleiten jeden Schritt. Melde dich, wir finden den passenden Einstieg." />
+</Layout>
+
+<style>
+  .jugend-intro__lede { margin-top: 1.2rem; }
+  .jugend-boats { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.8rem; }
+  .bk-chip { padding: 0.6rem 1.1rem; border-radius: 999px; background: var(--lake-200); color: var(--lake-700); font-weight: 600; font-size: 0.95rem; }
+
+  .paths { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .path { padding: clamp(1.6rem, 1rem + 2vw, 2.4rem); border-radius: var(--radius-lg); background: var(--white); border: 1px solid var(--line); transition: transform 0.5s var(--ease-expo), box-shadow 0.5s var(--ease-expo); }
+  .path:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .path__icon { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 15px; background: var(--pine-800); color: var(--brass-400); }
+  .path__tag { display: inline-block; margin-top: 1.2rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--brass-600); }
+  .path h3 { font-size: var(--step-2); margin: 0.3rem 0 0.7rem; }
+  .path p { color: var(--ink-soft); margin-bottom: 1.4rem; }
+
+  .kurse-band__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.6rem, 0.5rem + 4vw, 4rem); align-items: center; }
+  .kurse-band__img { width: 100%; border-radius: var(--radius-lg); aspect-ratio: 4/3.2; object-fit: cover; box-shadow: var(--shadow-lg); }
+  .kurse-band__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; margin-top: 1.8rem; }
+
+  @media (max-width: 880px) {
+    .paths, .kurse-band__inner { grid-template-columns: 1fr; }
+    .kurse-band__media { order: -1; }
+  }
+</style>

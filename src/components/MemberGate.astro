@@ -1,0 +1,80 @@
+---
+import Reveal from "./Reveal.astro";
+import Icon from "./Icon.astro";
+interface Props { perks: { icon: string; label: string }[] }
+const { perks } = Astro.props;
+---
+<section class="section gate">
+  <div class="container gate__grid">
+    <Reveal class="gate__card">
+      <span class="gate__lock"><Icon name="lock" size={22} /></span>
+      <h2 class="gate__title">Mitglieder-Login</h2>
+      <p class="gate__intro">
+        Dieser Bereich steht nur registrierten Mitgliedern des Yacht-Club am Tegernsee zur Verfügung.
+      </p>
+      <form class="gate__form" method="get" action="https://www.ycat.de/mitglieder/" onsubmit="return false">
+        <label class="field">
+          <span>Benutzername</span>
+          <input type="text" name="username" autocomplete="username" placeholder="Dein Benutzername" />
+        </label>
+        <label class="field">
+          <span>Passwort</span>
+          <input type="password" name="password" autocomplete="current-password" placeholder="••••••••" />
+        </label>
+        <button type="submit" class="btn btn--accent gate__submit">
+          Anmelden <span class="btn__icon"><Icon name="arrow-right" size={16} /></span>
+        </button>
+      </form>
+      <div class="gate__links">
+        <a href="https://www.ycat.de/lostpassword/" target="_blank" rel="noopener">Passwort vergessen?</a>
+        <span aria-hidden="true">·</span>
+        <a href="mailto:oswald@ycat.de?subject=Zugangsdaten%20Mitgliederbereich">Zugangsdaten anfragen</a>
+      </div>
+      <p class="gate__note">
+        <Icon name="users" size={16} />
+        Noch keine Zugangsdaten? Clubmitglieder können diese bei
+        <a href="/der-ycat/vorstand/">Alexander Oswald</a> beantragen.
+      </p>
+    </Reveal>
+
+    <Reveal class="gate__perks" delay={120}>
+      <p class="kicker">Im Mitgliederbereich</p>
+      <ul>
+        {perks.map((p) => (
+          <li><span class="gate__perk-icon"><Icon name={p.icon} size={18} /></span>{p.label}</li>
+        ))}
+      </ul>
+    </Reveal>
+  </div>
+</section>
+
+<style>
+  .gate__grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(1.6rem, 0.5rem + 4vw, 3.5rem); align-items: center; }
+  .gate__card { padding: clamp(1.8rem, 1.2rem + 2vw, 2.8rem); background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); max-width: 480px; }
+  .gate__lock { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 16px; background: var(--pine-800); color: var(--brass-400); }
+  .gate__title { font-size: var(--step-2); margin: 1.2rem 0 0.5rem; }
+  .gate__intro { color: var(--ink-soft); }
+  .gate__form { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.8rem; }
+  .field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .field span { font-size: 0.84rem; font-weight: 600; color: var(--ink-soft); }
+  .field input {
+    padding: 0.85rem 1rem; border-radius: var(--radius); border: 1px solid var(--line-strong);
+    background: var(--surface); font-size: 0.98rem; color: var(--ink); transition: border-color 0.2s, background-color 0.2s;
+  }
+  .field input::placeholder { color: var(--muted); }
+  .field input:focus-visible { outline: none; border-color: var(--lake-600); background: var(--white); box-shadow: 0 0 0 3px oklch(0.66 0.082 200 / 0.2); }
+  .gate__submit { margin-top: 0.3rem; justify-content: center; }
+  .gate__links { display: flex; gap: 0.6rem; align-items: center; margin-top: 1.2rem; font-size: 0.9rem; }
+  .gate__links a { color: var(--lake-700); font-weight: 500; transition: color 0.2s; }
+  .gate__links a:hover { color: var(--pine-800); text-decoration: underline; text-underline-offset: 3px; }
+  .gate__links span { color: var(--line-strong); }
+  .gate__note { display: flex; gap: 0.6rem; align-items: flex-start; margin-top: 1.6rem; padding-top: 1.4rem; border-top: 1px solid var(--line); font-size: 0.88rem; color: var(--muted); }
+  .gate__note svg { color: var(--lake-600); flex-shrink: 0; margin-top: 1px; }
+  .gate__note a { color: var(--lake-700); text-decoration: underline; text-underline-offset: 3px; margin-inline: 0.15rem; }
+
+  .gate__perks ul { list-style: none; padding: 0; margin-top: 1.4rem; display: flex; flex-direction: column; gap: 0.9rem; }
+  .gate__perks li { display: flex; align-items: center; gap: 0.9rem; font-weight: 500; color: var(--ink-soft); }
+  .gate__perk-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--lake-200); color: var(--lake-700); flex-shrink: 0; }
+
+  @media (max-width: 860px) { .gate__grid { grid-template-columns: 1fr; } .gate__card { max-width: none; } }
+</style>

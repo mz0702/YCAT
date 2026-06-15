@@ -1,0 +1,25 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import MemberGate from "../../components/MemberGate.astro";
+import clubhouse from "../../assets/photos/clubhouse.jpg";
+
+const perks = [
+  { icon: "sail", label: "Bootsleihe – Clubboote reservieren" },
+  { icon: "calendar", label: "Interne Termine & Veranstaltungen" },
+  { icon: "download", label: "Dokumente, Formulare & Protokolle" },
+  { icon: "anchor", label: "Liegeplatz- & Hafeninformationen" },
+];
+---
+<Layout title="Mitgliederbereich" description="Der Mitgliederbereich des Yacht-Club am Tegernsee – Login für registrierte Mitglieder.">
+  <PageHero
+    image={clubhouse}
+    imageAlt="Das Clubhaus des YCaT"
+    kicker="Intern"
+    title="Mitgliederbereich"
+    lede="Bootsleihe, interne Termine und Dokumente – der geschützte Bereich für Mitglieder des YCaT."
+    crumbs={[{ label: "Mitglieder" }]}
+    focus="center 50%"
+  />
+  <MemberGate perks={perks} />
+</Layout>
